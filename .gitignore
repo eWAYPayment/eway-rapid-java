@@ -1,0 +1,8 @@
+*.class
+*.iws
+*.iml
+*.jar
+*.war
+.idea
+doc
+target
