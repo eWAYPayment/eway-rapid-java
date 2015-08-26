@@ -15,6 +15,12 @@
       <name>eWAY</name>
       <url>https://www.eway.com.au</url>
     </organization>
+    <developers>
+      <developer>
+        <organization>eWAY</organization>
+        <organizationUrl>https://www.eway.com.au</organizationUrl>
+      </developer>
+    </developers>
     <licenses>
       <license>
         <name>MIT</name>
