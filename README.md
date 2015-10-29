@@ -1,5 +1,9 @@
 # eWAY Rapid Java Library
 
+[![Latest version on Maven Central][ico-version]][link-maven]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+
 A Java library to integrate with eWAY's Rapid Payment API.
 
 Sign up with eWAY at:
@@ -99,3 +103,10 @@ $ mvn test
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+[ico-version]: https://img.shields.io/maven-central/v/com.ewaypayments/eway-rapid-java.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/eWAYPayment/eway-rapid-java/master.svg?style=flat-square
+
+[link-maven]: https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22eway-rapid-java%22
+[link-travis]: https://travis-ci.org/eWAYPayment/eway-rapid-java
