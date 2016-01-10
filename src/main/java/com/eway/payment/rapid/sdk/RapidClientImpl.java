@@ -34,6 +34,7 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
+import com.sun.jersey.api.client.filter.LoggingFilter;
 import com.sun.jersey.api.json.JSONConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -76,6 +77,7 @@ public class RapidClientImpl implements RapidClient {
         this.APIKey = APIKey;
         this.password = password;
         this.rapidEndpoint = rapidEndpoint;
+        this.debug = false;
         validateAPIParam();
     }
 
@@ -88,6 +90,11 @@ public class RapidClientImpl implements RapidClient {
     public void setEndpoint(String endpoint) {
         this.rapidEndpoint = endpoint;
         validateAPIParam();
+    }
+
+    public void setDebug(boolean debug) {
+        LOGGER.info("eWAY Rapid SDK debug mode set to " + debug);
+        this.debug = debug;
     }
 
     /**
@@ -337,6 +344,9 @@ public class RapidClientImpl implements RapidClient {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client client = Client.create(clientConfig);
         client.addFilter(new HTTPBasicAuthFilter(APIKey, password));
+        if (this.debug) {
+            client.addFilter(new LoggingFilter(System.out));
+        }
         WebResource resource = client.resource(webUrl);
         String userAgent = "";
         try {
@@ -380,6 +390,11 @@ public class RapidClientImpl implements RapidClient {
      * @return The response with an exception
      */
     private <T extends ResponseOutput> T makeResponseWithException(RapidSdkException e, Class<T> c) {
+
+        if (this.debug) {
+            e.printStackTrace();
+        }
+
         try {
             T t;
             t = c.newInstance();

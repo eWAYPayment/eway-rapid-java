@@ -37,6 +37,14 @@ public interface RapidClient {
     void setEndpoint(String endpoint);
 
     /**
+     * Used to enable debug mode. If enabled, any errors will print a stacktrace
+     * to.
+     *
+     * @param debug set to true to enable
+     */
+    void setDebug(boolean debug);
+
+    /**
      * Create a transaction.
      * Can be an authorisation, a responsive shared page, transparent redirect,
      * or direct as the transaction method.
