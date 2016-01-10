@@ -7,6 +7,10 @@ import com.eway.payment.rapid.sdk.beans.internal.Transaction;
 import com.eway.payment.rapid.sdk.exception.ParameterInvalidException;
 import com.eway.payment.rapid.sdk.exception.RapidSdkException;
 import com.eway.payment.rapid.sdk.beans.external.ProcessingDetails;
+import com.eway.payment.rapid.sdk.beans.external.BeagleVerifyStatus;
+import com.eway.payment.rapid.sdk.beans.external.VerificationResult;
+import com.eway.payment.rapid.sdk.beans.internal.BeagleVerification;
+import com.eway.payment.rapid.sdk.beans.internal.Verification;
 
 public class InternalTransactionToStatusConverter implements BeanConverter<Transaction, TransactionStatus> {
 
@@ -28,6 +32,18 @@ public class InternalTransactionToStatusConverter implements BeanConverter<Trans
             }
         }
 
+        BeanConverter<Verification, VerificationResult> converter = new VerificationToVerifiResultConverter();
+        VerificationResult result = converter.doConvert(transaction.getVerification());
+
+        BeagleVerification beagleVerification = transaction.getBeagleVerification();
+        if (beagleVerification != null) {
+            String email = beagleVerification.getEmail();
+            String phone = beagleVerification.getPhone();
+            result.setBeagleEmail(getBeagleVerification(email));
+            result.setBeaglePhone(getBeagleVerification(phone));
+        }
+        transactionStatus.setVerificationResult(result);
+
         return transactionStatus;
     }
 
@@ -37,6 +53,19 @@ public class InternalTransactionToStatusConverter implements BeanConverter<Trans
         processingDetails.setResponseCode(response.getResponseCode());
         processingDetails.setResponseMessage(response.getResponseMessage());
         return processingDetails;
+    }
+
+    private BeagleVerifyStatus getBeagleVerification(String code) {
+        if ("0".equalsIgnoreCase(code)) {
+                return BeagleVerifyStatus.NotVerified;
+        } else if ("1".equalsIgnoreCase(code)) {
+                return BeagleVerifyStatus.Attempted;
+        } else if ("2".equalsIgnoreCase(code)) {
+                return BeagleVerifyStatus.Verified;
+        } else if ("3".equalsIgnoreCase(code)) {
+                return BeagleVerifyStatus.Failed;
+        }
+        return null;
     }
 
 }
