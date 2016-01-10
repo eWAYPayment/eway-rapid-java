@@ -54,7 +54,7 @@ public class TransactionToCreateAccessCodeRequestConverter implements BeanConver
             if (input.getShippingDetails() != null && input.getShippingDetails().getShippinhgMethod() != null) {
                 request.setShippingMethod(input.getShippingDetails().getShippinhgMethod().name());
             }
-            request.setMethod(input.isCapture() ? RequestMethod.ProcessPayment.name() : RequestMethod.Authorise.name());
+            request.setMethod(input.isCapture() ? (input.isSaveCustomer() ? RequestMethod.TokenPayment.name() : RequestMethod.ProcessPayment.name()) : RequestMethod.Authorise.name());
         }
         return request;
     }

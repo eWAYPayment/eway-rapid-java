@@ -50,7 +50,7 @@ public class TransactionToCreateAccessCodeSharedRequestConverter implements Bean
             BeanConverter<Transaction, Option[]> optionConverter = new TransactionToArrOptionConverter();
             request.setOptions(optionConverter.doConvert(input));
 
-            request.setMethod(input.isCapture() ? RequestMethod.ProcessPayment.name() : RequestMethod.Authorise.name());
+            request.setMethod(input.isCapture() ? (input.isSaveCustomer() ? RequestMethod.TokenPayment.name() : RequestMethod.ProcessPayment.name()) : RequestMethod.Authorise.name());
         }
         return request;
     }

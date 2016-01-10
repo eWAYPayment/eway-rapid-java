@@ -54,6 +54,8 @@ public class Transaction {
 
     private String logoUrl;
 
+    private boolean saveCustomer = false;
+
     /**
      * Return type of transaction (Purchase, MOTO,etc)
      *
@@ -501,6 +503,26 @@ public class Transaction {
      */
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
+    }
+
+    /**
+     * Get if a Token Customer should be created when a payment is completed
+     * while using the Responsive Shared Page or Transparent Redirect.
+     *
+     * @return True if a Token Customer should be created
+     */
+    public boolean isSaveCustomer() {
+        return saveCustomer;
+    }
+
+    /**
+     * Set if a Token Customer should be created when a payment is completed
+     * while using the Responsive Shared Page or Transparent Redirect.
+     *
+     * @param saveCustomer Set to true to create a token after a payment
+     */
+    public void setSaveCustomer(boolean saveCustomer) {
+        this.saveCustomer = saveCustomer;
     }
 
 }
