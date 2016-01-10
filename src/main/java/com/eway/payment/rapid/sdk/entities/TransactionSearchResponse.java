@@ -18,6 +18,7 @@ public class TransactionSearchResponse extends Response {
         return transactions;
     }
 
+    @JsonProperty("Transactions")
     public void setTransactions(Transaction[] transactions) {
         this.transactions = transactions;
     }
@@ -31,6 +32,7 @@ public class TransactionSearchResponse extends Response {
         return error;
     }
 
+    @JsonProperty("Errors")
     public void setError(String error) {
         this.error = error;
     }

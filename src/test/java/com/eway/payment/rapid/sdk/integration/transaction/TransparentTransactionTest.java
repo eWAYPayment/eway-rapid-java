@@ -44,6 +44,20 @@ public class TransparentTransactionTest extends IntegrationTest {
     }
 
     @Test
+    public void testMinimalValidInput() {
+        PaymentDetails paymentDetails = new PaymentDetails();
+        paymentDetails.setTotalAmount(1000);
+
+        Transaction transaction = new Transaction();
+        transaction.setPaymentDetails(paymentDetails);
+        transaction.setTransactionType(TransactionType.Purchase);
+        transaction.setRedirectURL("http://www.eway.com.au");
+
+        CreateTransactionResponse res = client.create(PaymentMethod.TransparentRedirect, transaction);
+        Assert.assertNotNull(res.getFormActionUrl());
+    }
+
+    @Test
     public void testBlankInput() {
         Transaction tran = new Transaction();
         Customer c = new Customer();

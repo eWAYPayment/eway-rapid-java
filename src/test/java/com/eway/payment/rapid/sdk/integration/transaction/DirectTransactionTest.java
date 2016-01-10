@@ -47,6 +47,26 @@ public class DirectTransactionTest extends IntegrationTest {
     }
 
     @Test
+    public void testMinimalValidInput() {
+        PaymentDetails paymentDetails = new PaymentDetails();
+        paymentDetails.setTotalAmount(1000);
+        
+        CardDetails cd = InputModelFactory.initCardDetails("12", "24");
+        Customer customer = new Customer();
+        customer.setCardDetails(cd);
+
+        Transaction transaction = new Transaction();
+        transaction.setPaymentDetails(paymentDetails);
+        transaction.setCustomer(customer);
+        transaction.setTransactionType(TransactionType.Purchase);
+
+        CreateTransactionResponse res = client.create(PaymentMethod.Direct, transaction);
+        
+        Assert.assertTrue(res.getTransactionStatus().isStatus());
+        Assert.assertNotEquals(0, res.getTransactionStatus().getTransactionID());
+    }
+
+    @Test
     public void testBlankInput() {
         Transaction tran = new Transaction();
         Customer c = new Customer();

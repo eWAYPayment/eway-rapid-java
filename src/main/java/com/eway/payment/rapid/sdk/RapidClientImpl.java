@@ -53,6 +53,7 @@ public class RapidClientImpl implements RapidClient {
     private String password;
     private String webUrl;
     private String rapidEndpoint;
+    private boolean debug;
 
     private boolean isValid;
     private List<String> listError;

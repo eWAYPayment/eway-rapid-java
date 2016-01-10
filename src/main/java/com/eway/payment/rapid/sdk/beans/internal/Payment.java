@@ -1,10 +1,12 @@
 package com.eway.payment.rapid.sdk.beans.internal;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * Contains payment information
  */
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Payment {
 
     @JsonProperty("TotalAmount")

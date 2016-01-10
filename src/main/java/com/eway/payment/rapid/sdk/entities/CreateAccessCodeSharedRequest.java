@@ -7,15 +7,19 @@ import com.eway.payment.rapid.sdk.beans.internal.Payment;
 import com.eway.payment.rapid.sdk.beans.internal.ShippingAddress;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class CreateAccessCodeSharedRequest extends Request {
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("Customer")
     private Customer customer;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("ShippingAddress")
     private ShippingAddress shippingAddress;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("ShippingMethod")
     private String shippingMethod;
 
@@ -34,45 +38,58 @@ public class CreateAccessCodeSharedRequest extends Request {
     @JsonProperty("CancelUrl")
     private String cancelUrl;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("CheckoutUrl")
     private String checkoutUrl;
 
     @JsonProperty("Method")
     private String method;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("DeviceID")
     private String deviceID;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("CustomerIP")
     private String customerIP;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("TransactionType")
     private String transactionType;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("LogoUrl")
     private String logoUrl;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("HeaderText")
     private String headerText;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("PartnerID")
     private String partnerID;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("Language")
     private String language;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("CustomerReadOnly")
     private Boolean customerReadOnly;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("CustomView")
     private String customView;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("VerifyCustomerPhone")
     private Boolean verifyCustomerPhone;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("VerifyCustomerEmail")
     private Boolean verifyCustomerEmail;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("CheckoutPayment")
     private Boolean checkoutPayment;
 

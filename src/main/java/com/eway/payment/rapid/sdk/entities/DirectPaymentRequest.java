@@ -7,12 +7,15 @@ import com.eway.payment.rapid.sdk.beans.internal.Customer;
 import com.eway.payment.rapid.sdk.beans.internal.Option;
 import com.eway.payment.rapid.sdk.beans.internal.Payment;
 import com.eway.payment.rapid.sdk.beans.internal.ShippingAddress;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class DirectPaymentRequest extends Request {
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("Customer")
     private Customer customer;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("ShippingAddress")
     private ShippingAddress shippingAddress;
 
@@ -31,15 +34,19 @@ public class DirectPaymentRequest extends Request {
     @JsonProperty("TransactionType")
     private String transactionType;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("CustomerIP")
     private String customerIP;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("DeviceID")
     private String deviceID;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("PartnerID")
     private String partnerID;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("RedirectUrl")
     private String redirectUrl;
 

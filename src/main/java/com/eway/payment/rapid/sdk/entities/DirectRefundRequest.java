@@ -6,12 +6,15 @@ import com.eway.payment.rapid.sdk.beans.internal.Option;
 import com.eway.payment.rapid.sdk.beans.internal.RefundDetails;
 import com.eway.payment.rapid.sdk.beans.internal.ShippingAddress;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 public class DirectRefundRequest extends Request {
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("Customer")
     public Customer customer;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("ShippingAddress")
     public ShippingAddress shippingAddress;
 
@@ -24,12 +27,15 @@ public class DirectRefundRequest extends Request {
     @JsonProperty("Options")
     public Option[] options = new Option[0];
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("DeviceID")
     public String deviceID;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("CustomerIP")
     public String customerIP;
 
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("PartnerID")
     public String partnerID;
 

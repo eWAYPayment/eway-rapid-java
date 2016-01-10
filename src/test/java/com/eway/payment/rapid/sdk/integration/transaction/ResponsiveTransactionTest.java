@@ -51,6 +51,21 @@ public class ResponsiveTransactionTest extends IntegrationTest {
     }
 
     @Test
+    public void testMinimalValidInput() {
+        PaymentDetails paymentDetails = new PaymentDetails();
+        paymentDetails.setTotalAmount(1000);
+
+        Transaction transaction = new Transaction();
+        transaction.setPaymentDetails(paymentDetails);
+        transaction.setTransactionType(TransactionType.Purchase);
+        transaction.setRedirectURL("http://www.eway.com.au");
+        transaction.setCancelURL("http://www.eway.com.au");
+
+        CreateTransactionResponse res = client.create(PaymentMethod.ResponsiveShared, transaction);
+        Assert.assertNotNull(res.getSharedPaymentUrl());
+    }
+
+    @Test
     public void testBlankInput() {
         Transaction tran = new Transaction();
         Customer c = new Customer();
