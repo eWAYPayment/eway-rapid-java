@@ -305,10 +305,7 @@ public class Customer {
      * @return card details for this customer
      */
     public CardDetails getCardDetails() {
-        if (cardDetails != null) {
-            return cardDetails;
-        }
-        return new CardDetails();
+        return cardDetails;
     }
 
     /**

@@ -27,11 +27,11 @@ public interface RapidClient {
      * @param password Password for the API Key
      */
     void setCredentials(String APIKey, String password);
-    
+
     /**
      * Change the eWAY Rapid endpoint. Can be one of "Production", "Sandbox" or
      * a URL.
-     * 
+     *
      * @param endpoint Rapid endpoint
      */
     void setEndpoint(String endpoint);
@@ -71,6 +71,19 @@ public interface RapidClient {
      * payment method used.
      */
     CreateCustomerResponse create(PaymentMethod paymentMethod, Customer customer);
+
+    /**
+     * Updates an existing token customer for the merchant in their eWAY account.
+     * Card, email and address changes can be made.
+     *
+     * @param paymentMethod Describes where the card details will be coming
+     * from for this transaction (Direct, Responsive Shared, Transparent
+     * Redirect etc).
+     * @param customer The Customer's information
+     * @return The create customer response. This will vary depending on the
+     * payment method used.
+     */
+    CreateCustomerResponse update(PaymentMethod paymentMethod, Customer customer);
 
     /**
      * Gets transaction information given an eWAY Transaction ID

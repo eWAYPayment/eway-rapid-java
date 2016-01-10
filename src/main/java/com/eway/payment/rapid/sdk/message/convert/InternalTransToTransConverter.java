@@ -60,12 +60,12 @@ public class InternalTransToTransConverter implements BeanConverter<com.eway.pay
                 }
             }
         }
-        if (iTransaction.getCustomer() != null) {
-            shippingDetails.setEmail(iTransaction.getCustomer().getEmail());
-            shippingDetails.setFax(iTransaction.getCustomer().getFax());
-            shippingDetails.setLastName(iTransaction.getCustomer().getLastName());
-            shippingDetails.setFirstName(iTransaction.getCustomer().getFirstName());
-            shippingDetails.setPhone(iTransaction.getCustomer().getPhone());
+        if (iTransaction.getShippingAddress() != null) {
+            shippingDetails.setEmail(iTransaction.getShippingAddress().getEmail());
+            shippingDetails.setFax(iTransaction.getShippingAddress().getFax());
+            shippingDetails.setLastName(iTransaction.getShippingAddress().getLastName());
+            shippingDetails.setFirstName(iTransaction.getShippingAddress().getFirstName());
+            shippingDetails.setPhone(iTransaction.getShippingAddress().getPhone());
         }
         return shippingDetails;
     }

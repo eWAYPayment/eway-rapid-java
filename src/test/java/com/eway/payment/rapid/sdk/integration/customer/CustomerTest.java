@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
 
@@ -20,29 +21,29 @@ import com.eway.payment.rapid.sdk.beans.external.Customer;
 import com.eway.payment.rapid.sdk.beans.external.PaymentMethod;
 import com.eway.payment.rapid.sdk.entities.CreateCustomerResponse;
 import com.eway.payment.rapid.sdk.integration.IntegrationTest;
-import com.eway.payment.rapid.sdk.object.create.ObjectCreator;
 import com.eway.payment.rapid.sdk.output.QueryCustomerResponse;
 import com.eway.payment.rapid.sdk.util.Constant;
 
 public class CustomerTest extends IntegrationTest {
 
+    Customer cust;
+    Address address;
+
+    @Before
+    public void setup() {
+        cust = InputModelFactory.initCustomer();
+        address = InputModelFactory.initAddress();
+    }
+
     @Test
     public void testCreateCustomerDirect() throws Exception {
-        Customer cust = InputModelFactory.initCustomer();
-        Address address = InputModelFactory.initAddress();
-        CardDetails detail = InputModelFactory.initCardDetails("12", "25");
-        cust.setCardDetails(detail);
-        cust.setAddress(address);
-        CreateCustomerResponse response = getSandboxClient().create(PaymentMethod.Direct, cust);
-        Customer createCust = response.getCustomer();
-        assertEquals(cust.getFirstName(), createCust.getFirstName());
+        Customer customer = getCustomerDirect(cust, address);
+        assertEquals(cust.getFirstName(), customer.getFirstName());
     }
 
     @Test
     public void testCreateCustomerDirectButAuthenFailure() throws Exception {
         RapidClient client = RapidSDK.newRapidClient(APIKEY, "ABCXYZ", SANDBOX_ENDPOINT);
-        Customer cust = InputModelFactory.initCustomer();
-        Address address = InputModelFactory.initAddress();
         CardDetails detail = InputModelFactory.initCardDetails("12", "25");
         cust.setCardDetails(detail);
         cust.setAddress(address);
@@ -63,8 +64,6 @@ public class CustomerTest extends IntegrationTest {
         f.setAccessible(true);
         f.set(client, fakeWebUrl);
         // Test
-        Customer cust = InputModelFactory.initCustomer();
-        Address address = InputModelFactory.initAddress();
         CardDetails detail = InputModelFactory.initCardDetails("12", "25");
         cust.setCardDetails(detail);
         cust.setAddress(address);
@@ -76,7 +75,6 @@ public class CustomerTest extends IntegrationTest {
 
     @Test
     public void testCreateCustomerInvalidPaymentMethod() throws Exception {
-        Customer cust = ObjectCreator.createExternalCustomer();
         CreateCustomerResponse response = getSandboxClient().create(PaymentMethod.Wallet, cust);
         assertTrue(!response.getErrors().isEmpty());
         assertEquals(1, response.getErrors().size());
@@ -85,8 +83,6 @@ public class CustomerTest extends IntegrationTest {
 
     @Test
     public void testCreateCustomerWithBlankInput() throws Exception {
-        Customer cust = InputModelFactory.initCustomer();
-        Address address = new Address();
         cust.setAddress(address);
         CardDetails detail = new CardDetails();
         cust.setCardDetails(detail);
@@ -100,8 +96,6 @@ public class CustomerTest extends IntegrationTest {
 
     @Test
     public void testQueryDirectValidCustomerId() {
-        Customer cust = InputModelFactory.initCustomer();
-        Address address = InputModelFactory.initAddress();
         cust.setAddress(address);
         CardDetails detail = InputModelFactory.initCardDetails("12", "25");
         cust.setCardDetails(detail);
@@ -116,8 +110,6 @@ public class CustomerTest extends IntegrationTest {
 
     @Test
     public void testCreateCustomerWithResponseShared() {
-        Customer cust = InputModelFactory.initCustomer();
-        Address address = InputModelFactory.initAddress();
         cust.setAddress(address);
         CardDetails detail = InputModelFactory.initCardDetails("12", "25");
         cust.setCardDetails(detail);
@@ -127,8 +119,6 @@ public class CustomerTest extends IntegrationTest {
 
     @Test
     public void testCreateCustomerWithTransparentReDirect() {
-        Customer cust = InputModelFactory.initCustomer();
-        Address address = InputModelFactory.initAddress();
         cust.setAddress(address);
         CardDetails detail = InputModelFactory.initCardDetails("12", "25");
         cust.setCardDetails(detail);
@@ -136,8 +126,52 @@ public class CustomerTest extends IntegrationTest {
         assertTrue(!StringUtils.isBlank(response.getFormActionUrl()));
     }
 
+    @Test
+    public void testUpdateCustomerDirect() {
+        Customer customer = getCustomerDirect(cust, address);
+        customer.setFirstName("Steve");
+        customer.setLastName("Chistian");
+        CardDetails detail = InputModelFactory.initCardDetails("12", "25");
+        customer.setCardDetails(detail);
+        CreateCustomerResponse response = getSandboxClient().update(PaymentMethod.Direct, customer);
+        assertTrue(response.getCustomer().getTokenCustomerID().equals(customer.getTokenCustomerID()));
+        assertTrue(response.getCustomer().getFirstName().equals("Steve"));
+        assertTrue(response.getCustomer().getLastName().equals("Chistian"));
+    }
+
+    @Test
+    public void testUpdateCustomerResponsive() {
+        Customer customer = getCustomerDirect(cust, address);
+        customer.setFirstName("Steve");
+        customer.setLastName("Chistian");
+        customer.setRedirectUrl("http://www.eway.com.au");
+        customer.setCancelUrl("http://www.eway.com.au");
+        CreateCustomerResponse response = getSandboxClient().update(PaymentMethod.ResponsiveShared, customer);
+        assertTrue(response.getCustomer().getFirstName().equals("Steve"));
+        assertTrue(response.getCustomer().getLastName().equals("Chistian"));
+    }
+
+    @Test
+    public void testUpdateCustomerTransparent() {
+        Customer customer = getCustomerDirect(cust, address);
+        customer.setFirstName("Steve");
+        customer.setLastName("Chistian");
+        customer.setRedirectUrl("http://www.eway.com.au");
+        CreateCustomerResponse response = getSandboxClient().update(PaymentMethod.TransparentRedirect, customer);
+        assertTrue(response.getCustomer().getFirstName().equals("Steve"));
+        assertTrue(response.getCustomer().getLastName().equals("Chistian"));
+    }
+
     @After
     public void tearDown() {
 
+    }
+
+    private Customer getCustomerDirect(Customer customer, Address address) {
+        CardDetails detail = InputModelFactory.initCardDetails("12", "25");
+        customer.setCardDetails(detail);
+        customer.setAddress(address);
+        CreateCustomerResponse response = getSandboxClient().create(PaymentMethod.Direct, customer);
+        return response.getCustomer();
     }
 }

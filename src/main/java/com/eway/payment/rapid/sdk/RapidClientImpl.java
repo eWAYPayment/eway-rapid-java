@@ -11,8 +11,11 @@ import com.eway.payment.rapid.sdk.exception.ParameterInvalidException;
 import com.eway.payment.rapid.sdk.exception.RapidSdkException;
 import com.eway.payment.rapid.sdk.message.process.MessageProcess;
 import com.eway.payment.rapid.sdk.message.process.customer.CustDirectPaymentMsgProcess;
+import com.eway.payment.rapid.sdk.message.process.customer.CustDirectUpdateMsgProcess;
 import com.eway.payment.rapid.sdk.message.process.customer.CustResponsiveSharedMsgProcess;
+import com.eway.payment.rapid.sdk.message.process.customer.CustResponsiveUpdateMsgProcess;
 import com.eway.payment.rapid.sdk.message.process.customer.CustTransparentRedirectMsgProcess;
+import com.eway.payment.rapid.sdk.message.process.customer.CustTransparentUpdateMsgProcess;
 import com.eway.payment.rapid.sdk.message.process.customer.QueryCustomerMsgProcess;
 import com.eway.payment.rapid.sdk.message.process.refund.CancelAuthorisationMsgProcess;
 import com.eway.payment.rapid.sdk.message.process.refund.CapturePaymentMsgProcess;
@@ -87,7 +90,7 @@ public class RapidClientImpl implements RapidClient {
         this.password = password;
         validateAPIParam();
     }
-    
+
     public void setEndpoint(String endpoint) {
         this.rapidEndpoint = endpoint;
         validateAPIParam();
@@ -222,6 +225,33 @@ public class RapidClientImpl implements RapidClient {
                     break;
                 default:
                     return makeResponseWithException(new ParameterInvalidException("Unsupported Payment Method"), CreateCustomerResponse.class);
+            }
+            return process.doWork(customer);
+        } catch (RapidSdkException e) {
+            LOGGER.error(e.getMessage());
+            return makeResponseWithException(e, CreateCustomerResponse.class);
+        }
+    }
+
+    public CreateCustomerResponse update(PaymentMethod paymentMethod, Customer customer) {
+        if (!isValid()) {
+            return makeResponseWithException(new APIKeyInvalidException("APIKey, password or rapid endpoint param had been null or empty"),
+                    CreateCustomerResponse.class);
+        }
+        try {
+            MessageProcess<Customer, CreateCustomerResponse> process = null;
+            switch (paymentMethod) {
+                case Direct:
+                    process = new CustDirectUpdateMsgProcess(getEwayWebResource(), Constant.DIRECT_PAYMENT_METHOD_NAME.concat(Constant.JSON_SUFIX));
+                    break;
+                case ResponsiveShared:
+                    process = new CustResponsiveUpdateMsgProcess(getEwayWebResource(), Constant.RESPONSIVE_SHARED_METHOD_NAME.concat(Constant.JSON_SUFIX));
+                    break;
+                case TransparentRedirect:
+                    process = new CustTransparentUpdateMsgProcess(getEwayWebResource(), Constant.TRANSPARENT_REDIRECT_METHOD_NAME.concat(Constant.JSON_SUFIX));
+                    break;
+                default:
+                    return makeResponseWithException(new ParameterInvalidException("Not support this payment type"), CreateCustomerResponse.class);
             }
             return process.doWork(customer);
         } catch (RapidSdkException e) {

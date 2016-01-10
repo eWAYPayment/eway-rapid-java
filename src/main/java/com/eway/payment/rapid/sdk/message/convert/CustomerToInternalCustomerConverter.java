@@ -38,6 +38,9 @@ public class CustomerToInternalCustomerConverter implements BeanConverter<Custom
 
             // Card detail
             CardDetails cardDetail = customer.getCardDetails();
+            if (cardDetail == null) {
+                cardDetail = new CardDetails();
+            }
             iCustomer.setCardDetails(cardDetail);
             if (cardDetail != null && this.mergeCardDetailToThis) {
                 iCustomer.setCardStartMonth(cardDetail.getStartMonth());

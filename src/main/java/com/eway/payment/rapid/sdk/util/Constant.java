@@ -29,6 +29,7 @@ public class Constant {
     public static final String DIRECT_REFUND_METHOD_NAME = "DirectRefund";
     public static final String CANCEL_AUTHORISATION_METHOD_NAME = "CancelAuthorisation";
     public static final String CREATE_TOKEN_CUSTOMER_METHOD = "CreateTokenCustomer";
+    public static final String UPDATE_TOKEN_CUSTOMER_METHOD = "UpdateTokenCustomer";
     public static final String CANCEL_AUTHORISATION_METHOD = "CancelAuthorisation";
     public static final String TRANSACTION_METHOD = "Transaction";
     public static final String DIRECT_CUSTOMER_SEARCH_METHOD = "DirectCustomerSearch";

@@ -39,6 +39,7 @@ public class QueryTransactionTest extends IntegrationTest {
         c.setAddress(a);
         trans.setCustomer(c);
         trans.setPaymentDetails(p);
+
         CreateTransactionResponse transResponse = client.create(
                 PaymentMethod.Direct, trans);
         Assert.assertTrue(transResponse.getTransactionStatus().isStatus());
@@ -50,8 +51,7 @@ public class QueryTransactionTest extends IntegrationTest {
         QueryTransactionResponse query = client.queryTransaction(transactionId);
         Assert.assertEquals(transactionId, query.getTransactionStatus()
                 .getTransactionID());
-        Assert.assertTrue(query.getErrors() == null
-                || query.getErrors().isEmpty());
+        Assert.assertTrue(query.getErrors() == null || query.getErrors().isEmpty());
 
     }
 

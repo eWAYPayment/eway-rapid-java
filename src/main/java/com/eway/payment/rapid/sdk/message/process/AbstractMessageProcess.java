@@ -96,6 +96,46 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
     }
 
     /**
+     * Call Rapid API with a PUT request
+     *
+     * @param <U> Request class
+     * @param <K> Response class
+     * @param request Request object
+     * @param responseClass The response class used for a successful result
+     * @return Instance of response class
+     * @throws RapidSdkException base SDK exception
+     */
+    protected final <U, K> U doPut(K request, Class<U> responseClass) throws RapidSdkException {
+        try {
+            WebResource resouce = getWebResource();
+            for (String path : getRequestPath()) {
+                if (!StringUtils.isBlank(path)) {
+                    resouce = resouce.path(path);
+                }
+            }
+
+            ObjectMapper mapper = new ObjectMapper();
+            requestJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
+
+            return resouce.type(MediaType.APPLICATION_JSON_TYPE).accept(MediaType.APPLICATION_JSON_TYPE).put(responseClass, request);
+        } catch (ClientHandlerException e) {
+            throw new CommunicationFailureException("Internal system error communicating with Rapid API", e);
+        } catch (UniformInterfaceException e) {
+            if (e.getResponse().getStatus() == Status.UNAUTHORIZED.getStatusCode()) {
+                throw new AuthenticationFailureException("Authentication failed on the endpoint", e);
+            } else if (e.getResponse().getStatus() == Status.FORBIDDEN.getStatusCode()) {
+                throw new AuthenticationFailureException("Authentication failed on the endpoint", e);
+            } else if (e.getResponse().getStatus() == Status.NOT_FOUND.getStatusCode()) {
+                throw new AuthenticationFailureException("Authentication failed on the endpoint", e);
+            } else {
+                throw new SystemErrorException(e.getMessage(), e);
+            }
+        } catch (IOException e) {
+            throw new SystemErrorException(e.getMessage(), e);
+        }
+    }
+
+    /**
      * Call Rapid API with a GET request
      *
      * @param <U> Response class
