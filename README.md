@@ -26,7 +26,7 @@ The eWAY Rapid Java library can be easily added to your Maven project's pom.xml:
     <dependency>
       <groupId>com.ewaypayments</groupId>
       <artifactId>eway-rapid-java</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.0</version>
     </dependency>
 ```
 
