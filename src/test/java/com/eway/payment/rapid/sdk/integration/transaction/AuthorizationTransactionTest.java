@@ -56,9 +56,8 @@ public class AuthorizationTransactionTest extends IntegrationTest {
         CreateTransactionResponse res = client.create(PaymentMethod.Direct, t);
         t.setAuthTransactionID(res.getTransactionStatus().getTransactionID());
         CreateTransactionResponse authRes = client.create(PaymentMethod.Authorisation, t);
-        t.setAuthTransactionID(authRes.getTransactionStatus().getTransactionID());
         CreateTransactionResponse authRes2 = client.create(PaymentMethod.Authorisation, t);
-        Assert.assertTrue(authRes2.getErrors().contains("S5010"));
+        Assert.assertTrue(!authRes2.getTransactionStatus().isStatus());
     }
 
     @After

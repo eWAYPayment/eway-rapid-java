@@ -67,7 +67,7 @@ public class CancelTransactionTest extends IntegrationTest {
         t.setAuthTransactionID(res.getTransactionStatus().getTransactionID());
         CreateTransactionResponse authRes = client.create(PaymentMethod.Authorisation, t);
         RefundDetails rd = new RefundDetails();
-        rd.setOriginalTransactionID(String.valueOf(authRes.getTransactionStatus().getTransactionID()));
+        rd.setOriginalTransactionID(String.valueOf(res.getTransactionStatus().getTransactionID()));
         refund.setRefundDetails(rd);
         RefundResponse cancelRes = client.cancel(refund);
         Assert.assertTrue(!cancelRes.getTransactionStatus().isStatus());
