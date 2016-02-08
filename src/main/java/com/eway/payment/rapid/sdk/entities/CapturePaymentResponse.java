@@ -2,12 +2,14 @@ package com.eway.payment.rapid.sdk.entities;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * Response object from capturing a payment
  */
 @SuppressWarnings("restriction")
 @XmlRootElement(name = "CapturePaymentResponse")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CapturePaymentResponse extends Response {
 
     @XmlElement(name = "ResponseCode")

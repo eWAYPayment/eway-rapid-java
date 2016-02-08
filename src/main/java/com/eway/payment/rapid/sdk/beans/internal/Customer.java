@@ -2,9 +2,11 @@ package com.eway.payment.rapid.sdk.beans.internal;
 
 import com.eway.payment.rapid.sdk.beans.external.CardDetails;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
 
     @JsonProperty("TokenCustomerID")

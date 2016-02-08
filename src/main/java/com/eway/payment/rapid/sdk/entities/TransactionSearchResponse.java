@@ -1,11 +1,13 @@
 package com.eway.payment.rapid.sdk.entities;
 
 import com.eway.payment.rapid.sdk.beans.internal.Transaction;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * The response from a transaction search
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionSearchResponse extends Response {
 
     @JsonProperty("Transactions")

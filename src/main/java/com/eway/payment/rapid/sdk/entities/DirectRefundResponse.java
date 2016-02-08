@@ -2,11 +2,13 @@ package com.eway.payment.rapid.sdk.entities;
 
 import com.eway.payment.rapid.sdk.beans.internal.Customer;
 import com.eway.payment.rapid.sdk.beans.internal.RefundDetails;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * The response from completing a refund
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DirectRefundResponse extends Response {
 
     @JsonProperty("AuthorisationCode")

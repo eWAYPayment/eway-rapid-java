@@ -4,12 +4,14 @@ import com.eway.payment.rapid.sdk.beans.internal.Customer;
 import com.eway.payment.rapid.sdk.beans.internal.Payment;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * Response from creating a transaction using the Responsive Shared Page. Use
  * the SharedPaymentUrl to send the customer to the Shared Page to complete the
  * transaction.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateAccessCodeSharedResponse extends Response {
 
     @JsonProperty("Customer")

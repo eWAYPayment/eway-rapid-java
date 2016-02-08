@@ -2,12 +2,14 @@ package com.eway.payment.rapid.sdk.entities;
 
 import com.eway.payment.rapid.sdk.beans.internal.Customer;
 import com.eway.payment.rapid.sdk.beans.internal.Payment;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * The response from creating an AccessCode for a Transparent Redirect
  * transaction.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateAccessCodeResponse extends Response {
 
     @JsonProperty("Customer")

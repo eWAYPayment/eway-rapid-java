@@ -4,10 +4,12 @@ import com.eway.payment.rapid.sdk.beans.internal.Customer;
 import com.eway.payment.rapid.sdk.beans.internal.Payment;
 import com.eway.payment.rapid.sdk.beans.internal.Verification;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * The response from completing a direct payment
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DirectPaymentResponse extends Response {
 
     @JsonProperty("AuthorisationCode")

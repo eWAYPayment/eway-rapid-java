@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.eway.payment.rapid.sdk.beans.internal.Customer;
 
 /**
  * The response from searching for a customer
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DirectCustomerSearchResponse extends Response {
 
     @JsonProperty("Customers")

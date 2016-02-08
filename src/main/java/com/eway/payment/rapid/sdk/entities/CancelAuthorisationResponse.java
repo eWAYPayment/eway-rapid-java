@@ -1,10 +1,12 @@
 package com.eway.payment.rapid.sdk.entities;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * Response object for a Cancel Authorisation request
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CancelAuthorisationResponse extends Response {
 
     @JsonProperty("ResponseCode")
