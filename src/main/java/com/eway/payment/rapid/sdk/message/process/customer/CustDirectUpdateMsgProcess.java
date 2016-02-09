@@ -39,7 +39,7 @@ public class CustDirectUpdateMsgProcess extends AbstractMakeRequestMessageProces
         request.setCustomer(interCustConvert.doConvert(input));
         request.setCustomerIP(input.getCustomerDeviceIP());
         request.setMethod(Constant.UPDATE_TOKEN_CUSTOMER_METHOD);
-        request.setTransactionType(TransactionType.Purchase.name());
+        request.setTransactionType(TransactionType.MOTO.name());
         return request;
     }
 

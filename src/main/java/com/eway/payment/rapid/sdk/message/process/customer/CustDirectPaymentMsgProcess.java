@@ -36,7 +36,7 @@ public class CustDirectPaymentMsgProcess extends AbstractMakeRequestMessageProce
         request.setCustomer(interCustConvert.doConvert(input));
         request.setCustomerIP(input.getCustomerDeviceIP());
         request.setMethod(Constant.CREATE_TOKEN_CUSTOMER_METHOD);
-        request.setTransactionType(TransactionType.Purchase.name());
+        request.setTransactionType(TransactionType.MOTO.name());
         return request;
     }
 
