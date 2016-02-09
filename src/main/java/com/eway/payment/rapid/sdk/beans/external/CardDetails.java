@@ -69,12 +69,16 @@ public class CardDetails {
 
     /**
      * Set card's expiry month
+     * This can optionally include a leading zero for one digit months.
      *
      * @param expiryMonth Card expiry month
      */
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("ExpiryMonth")
     public void setExpiryMonth(String expiryMonth) {
+		if (expiryMonth != null && expiryMonth.length() == 1) {
+			expiryMonth = "0" + expiryMonth;
+		}
         this.expiryMonth = expiryMonth;
     }
 
