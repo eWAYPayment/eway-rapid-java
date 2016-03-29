@@ -37,7 +37,7 @@ The eWAY Rapid Java library can also be built with Maven. To do so:
  1. Clone the eWAY Rapid GitHub project or download the zip
  2. Navigate to the folder with the pom.xml file and run
 ```bash
-$ mvn build
+$ mvn package
 ```
  3. The compiled jar file will be in the "target" directory
 
