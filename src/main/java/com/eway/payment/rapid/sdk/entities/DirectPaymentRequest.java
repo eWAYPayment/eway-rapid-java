@@ -49,6 +49,10 @@ public class DirectPaymentRequest extends Request {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonProperty("RedirectUrl")
     private String redirectUrl;
+    
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonProperty("SecuredCardData")
+    private String securedCardData;
 
     public String getRedirectUrl() {
         return redirectUrl;
@@ -138,4 +142,11 @@ public class DirectPaymentRequest extends Request {
         this.partnerID = partnerID;
     }
 
+    public String getSecuredCardData() {
+        return securedCardData;
+    }
+
+    public void setSecuredCardData(String securedCardData) {
+        this.securedCardData = securedCardData;
+    }
 }

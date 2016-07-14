@@ -38,6 +38,7 @@ public class TransactionToDirectPaymentConverter implements BeanConverter<Transa
         request.setTransactionType(input.getTransactionType() != null ? input.getTransactionType().name() : "");
         request.setMethod(input.isCapture() ? RequestMethod.ProcessPayment.name() : RequestMethod.Authorise.name());
         request.setRedirectUrl(input.getRedirectURL());
+        request.setSecuredCardData(input.getSecuredCardData());
         return request;
     }
 

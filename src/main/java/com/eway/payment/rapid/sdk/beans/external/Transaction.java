@@ -30,6 +30,8 @@ public class Transaction {
 
     private String thirdPartyWalletID;
 
+    private String securedCardData;
+
     private Integer authTransactionID;
 
     private String redirectURL;
@@ -246,6 +248,7 @@ public class Transaction {
      * Details (optional)
      *
      * @return a Third Party Digital wallet ID
+     * @deprecated replaced by {@link #getSecuredCardData()}
      */
     public String getThirdPartyWalletID() {
         return thirdPartyWalletID;
@@ -255,9 +258,29 @@ public class Transaction {
      * Set the third party waller ID
      *
      * @param thirdPartyWalletID a Third Party Digital wallet ID
+     * @deprecated replaced by {@link #setSecuredCardData(java.lang.String)}
      */
     public void setThirdPartyWalletID(String thirdPartyWalletID) {
         this.thirdPartyWalletID = thirdPartyWalletID;
+    }
+
+    /**
+     * Return the Secured Card Data - Card data ID, used for Secure Fields, 
+     * Visa Checkout, AMEX Express Checkout and Android Pay (optional)
+     *
+     * @return the Secured Card Data
+     */
+    public String getSecuredCardData() {
+        return securedCardData;
+    }
+
+    /**
+     * Set the Secured Card Data
+     *
+     * @param securedCardData the Secured Card Data
+     */
+    public void setSecuredCardData(String securedCardData) {
+        this.securedCardData = securedCardData;
     }
 
     /**
