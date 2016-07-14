@@ -24,6 +24,7 @@ public class InternalCustomerToCustomerConverter
             customer.setReference(iCustomer.getReference());
             customer.setUrl(iCustomer.getUrl());
             customer.setCustomerDeviceIP(iCustomer.getCustomerDeviceIP());
+            customer.setEmail(iCustomer.getEmail());
             
             Address address = new Address();
             address.setCity(iCustomer.getCity());
