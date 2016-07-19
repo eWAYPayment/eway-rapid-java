@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ewaypayments</groupId>
@@ -12,26 +12,26 @@
     <description>A Java library for connecting to eWAY's Rapid API</description>
     <url>https://www.eway.com.au</url>
     <organization>
-      <name>eWAY</name>
-      <url>https://www.eway.com.au</url>
+        <name>eWAY</name>
+        <url>https://www.eway.com.au</url>
     </organization>
     <developers>
-      <developer>
-        <organization>eWAY</organization>
-        <organizationUrl>https://www.eway.com.au</organizationUrl>
-      </developer>
+        <developer>
+            <organization>eWAY</organization>
+            <organizationUrl>https://www.eway.com.au</organizationUrl>
+        </developer>
     </developers>
     <licenses>
-      <license>
-        <name>MIT</name>
-        <url>http://opensource.org/licenses/MIT</url>
-      </license>
+        <license>
+            <name>MIT</name>
+            <url>http://opensource.org/licenses/MIT</url>
+        </license>
     </licenses>
 
     <scm>
-      <connection>scm:git@github.com:eWAYPayment/eway-rapid-java.git</connection>
-      <developerConnection>scm:git@github.com:eWAYPayment/eway-rapid-java.git</developerConnection>
-      <url>git@github.com:eWAYPayment/eway-rapid-java.git</url>
+        <connection>scm:git@github.com:eWAYPayment/eway-rapid-java.git</connection>
+        <developerConnection>scm:git@github.com:eWAYPayment/eway-rapid-java.git</developerConnection>
+        <url>git@github.com:eWAYPayment/eway-rapid-java.git</url>
     </scm>
     <distributionManagement>
         <snapshotRepository>
@@ -46,21 +46,21 @@
 
     <dependencies>
         <!-- A bundle containing code of all jar-based modules that provide JAX-RS
-            and Jersey-related features -->
+        and Jersey-related features -->
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-bundle</artifactId>
             <version>1.19</version>
         </dependency>
         <!-- The Commons IO library contains utility classes, stream implementations,
-            file filters, file comparators, endian transformation classes, and much more -->
+        file filters, file comparators, endian transformation classes, and much more -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
         </dependency>
         <!-- JUnit is a unit testing framework for Java, created by Erich Gamma
-            and Kent Beck -->
+        and Kent Beck -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -73,15 +73,15 @@
             <version>2.8</version>
         </dependency>
         <!-- Apache Commons Validator provides the building blocks for both client
-            side validation and server side data validation. It may be used standalone
-            or with a framework like Struts -->
+        side validation and server side data validation. It may be used standalone
+        or with a framework like Struts -->
         <dependency>
             <groupId>commons-validator</groupId>
             <artifactId>commons-validator</artifactId>
             <version>1.4.1</version>
         </dependency>
         <!-- The Simple Logging Facade for Java (SLF4J) serves as a simple facade
-            or abstraction for various logging frameworks -->
+        or abstraction for various logging frameworks -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -163,33 +163,34 @@
                 </executions>
             </plugin>
             <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-gpg-plugin</artifactId>
-              <version>1.6</version>
-              <executions>
-                <execution>
-                  <id>sign-artifacts</id>
-                  <phase>verify</phase>
-                  <goals>
-                    <goal>sign</goal>
-                  </goals>
-                </execution>
-              </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
-              <groupId>org.sonatype.plugins</groupId>
-              <artifactId>nexus-staging-maven-plugin</artifactId>
-              <version>1.6.5</version>
-              <extensions>true</extensions>
-              <configuration>
-                <serverId>ossrh</serverId>
-                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                <autoReleaseAfterClose>false</autoReleaseAfterClose>
-              </configuration>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
                 <executions>
                     <execution>
                         <goals>
