@@ -2,6 +2,10 @@
 
 All Notable changes will be documented in this file
 
+## 1.2.0
+
+ - Added ability to set the Rapid API version and new associated fields
+
 ## 1.1.2
 
  - Added SecuredCardData field and new messages for Secure Fields

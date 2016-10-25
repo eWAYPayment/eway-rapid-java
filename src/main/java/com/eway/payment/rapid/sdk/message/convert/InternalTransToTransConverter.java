@@ -14,6 +14,10 @@ public class InternalTransToTransConverter implements BeanConverter<com.eway.pay
     public Transaction doConvert(com.eway.payment.rapid.sdk.beans.internal.Transaction iTransaction) throws RapidSdkException {
         Transaction transaction = new Transaction();
         transaction.setTokenCustomerID(iTransaction.getTokenCustomerID());
+        transaction.setMaxRefund(iTransaction.getMaxRefund());
+        transaction.setTransactionDateTime(iTransaction.getTransactionDateTime());
+        transaction.setSource(iTransaction.getSource());
+        transaction.setOriginalTransactionId(iTransaction.getOriginalTransactionId());
 
         Customer eWayCustomer = getEwayCustomer(iTransaction);
 
@@ -42,6 +46,7 @@ public class InternalTransToTransConverter implements BeanConverter<com.eway.pay
         paymentDetails.setTotalAmount(iTransaction.getTotalAmount());
         paymentDetails.setInvoiceReference(iTransaction.getInvoiceReference());
         paymentDetails.setInvoiceNumber(iTransaction.getInvoiceNumber());
+        paymentDetails.setCurrencyCode(iTransaction.getCurrencyCode());
         return paymentDetails;
     }
 

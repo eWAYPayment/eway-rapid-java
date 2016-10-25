@@ -8,6 +8,7 @@ import com.eway.payment.rapid.sdk.exception.ParameterInvalidException;
 import com.eway.payment.rapid.sdk.exception.RapidSdkException;
 import com.eway.payment.rapid.sdk.beans.external.ProcessingDetails;
 import com.eway.payment.rapid.sdk.beans.external.BeagleVerifyStatus;
+import com.eway.payment.rapid.sdk.beans.external.FraudAction;
 import com.eway.payment.rapid.sdk.beans.external.VerificationResult;
 import com.eway.payment.rapid.sdk.beans.internal.BeagleVerification;
 import com.eway.payment.rapid.sdk.beans.internal.Verification;
@@ -21,8 +22,16 @@ public class InternalTransactionToStatusConverter implements BeanConverter<Trans
         }
         transactionStatus.setStatus(transaction.getTransactionStatus());
         transactionStatus.setTotal(transaction.getTotalAmount());
+        transactionStatus.setCaptured(transaction.getTransactionCaptured());
 
         transactionStatus.setProcessingDetails(getProcessingDetails(transaction));
+        if (!StringUtils.isBlank(transaction.getFraudAction())) {
+            try {
+                transactionStatus.setFraudAction(FraudAction.valueOf(transaction.getFraudAction()));
+            } catch (Exception e) {
+                throw new ParameterInvalidException("Invalid Transaction Fraud Action: " + transaction.getFraudAction());
+            }
+        }
 
         if (!StringUtils.isBlank(transaction.getTransactionID())) {
             try {

@@ -28,6 +28,7 @@ public class AccessCodeToCreateTransConverter implements BeanConverter<CreateAcc
         }
         transactionResponse.setAccessCode(response.getAccessCode());
         transactionResponse.setFormActionUrl(response.getFormActionURL());
+        transactionResponse.setAmexECEncryptedData(response.getAmexECEncryptedData());
         return transactionResponse;
     }
 

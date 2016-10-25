@@ -123,6 +123,9 @@ public class CreateAccessCodeResponse extends Response {
     @JsonProperty("CardIssueNumber")
     private String cardIssueNumber;
 
+    @JsonProperty("AmexECEncryptedData")
+    private String amexECEncryptedData;
+
     /**
      * The customer details for the transaction
      *
@@ -309,7 +312,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's first name
-     * 
+     *
      * @return The customer's first name
      */
     public String getFirstName() {
@@ -322,7 +325,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's last name
-     * 
+     *
      * @return The customer's last name
      */
     public String getLastName() {
@@ -335,7 +338,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's company
-     * 
+     *
      * @return The customer's company
      */
     public String getCompanyName() {
@@ -348,7 +351,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's job description / role
-     * 
+     *
      * @return The customer's job description
      */
     public String getJobDescription() {
@@ -361,7 +364,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's street address
-     * 
+     *
      * @return The customer's street address
      */
     public String getStreet1() {
@@ -374,7 +377,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the second part of the customer's street address
-     * 
+     *
      * @return The customer's street address
      */
     public String getStreet2() {
@@ -387,7 +390,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's suburb or city
-     * 
+     *
      * @return The customer's suburb or city
      */
     public String getCity() {
@@ -400,7 +403,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's state
-     * 
+     *
      * @return The customer's state
      */
     public String getState() {
@@ -413,7 +416,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's postcode
-     * 
+     *
      * @return The customer's postcode
      */
     public String getPostalCode() {
@@ -426,7 +429,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's country
-     * 
+     *
      * @return The customer's country
      */
     public String getCountry() {
@@ -439,7 +442,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's email
-     * 
+     *
      * @return The customer's email
      */
     public String getEmail() {
@@ -452,8 +455,8 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's phone
-     * 
-     * @return The customer's 
+     *
+     * @return The customer's phone
      */
     public String getPhone() {
         return phone;
@@ -465,7 +468,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's mobile
-     * 
+     *
      * @return The customer's mobile
      */
     public String getMobile() {
@@ -478,7 +481,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get any comments attached to the customer
-     * 
+     *
      * @return The customer's comments
      */
     public String getComments() {
@@ -491,7 +494,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's fax
-     * 
+     *
      * @return The customer's fax
      */
     public String getFax() {
@@ -504,7 +507,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's URL
-     * 
+     *
      * @return The customer's URL
      */
     public String getUrl() {
@@ -517,7 +520,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's masked card number
-     * 
+     *
      * @return The customer's masked card number
      */
     public String getCardNumber() {
@@ -530,7 +533,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's card name
-     * 
+     *
      * @return The customer's name
      */
     public String getCardName() {
@@ -543,7 +546,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's card expiry month
-     * 
+     *
      * @return The customer's card expiry month
      */
     public String getCardExpiryMonth() {
@@ -556,7 +559,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's card expiry year
-     * 
+     *
      * @return The customer's expiry year
      */
     public String getCardExpiryYear() {
@@ -569,8 +572,8 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's card start month
-     * 
-     * @return The customer's 
+     *
+     * @return The customer's card start month
      */
     public String getCardStartMonth() {
         return cardStartMonth;
@@ -582,7 +585,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's card start year
-     * 
+     *
      * @return The customer's card start year
      */
     public String getCardStartYear() {
@@ -595,7 +598,7 @@ public class CreateAccessCodeResponse extends Response {
 
     /**
      * Get the customer's card issue number
-     * 
+     *
      * @return The customer's card issue number
      */
     public String getCardIssueNumber() {
@@ -604,6 +607,19 @@ public class CreateAccessCodeResponse extends Response {
 
     public void setCardIssueNumber(String cardIssueNumber) {
         this.cardIssueNumber = cardIssueNumber;
+    }
+
+    /**
+     * Get the AMEX Express Checkout Data (Rapid v40 only)
+     *
+     * @return The AMEX Express Checkout Data
+     */
+    public String getAmexECEncryptedData() {
+        return amexECEncryptedData;
+    }
+
+    public void setAmexECEncryptedData(String amexECEncryptedData) {
+        this.amexECEncryptedData = amexECEncryptedData;
     }
 
 }

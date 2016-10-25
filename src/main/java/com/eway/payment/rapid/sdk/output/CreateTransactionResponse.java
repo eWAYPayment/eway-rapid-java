@@ -13,6 +13,7 @@ public class CreateTransactionResponse extends ResponseOutput {
     private String sharedPaymentUrl;
     private String formActionUrl;
     private String accessCode;
+    private String amexECEncryptedData;
 
     /**
      * Get the Transaction as echoed back by the Rapid API. Where a token
@@ -112,5 +113,23 @@ public class CreateTransactionResponse extends ResponseOutput {
      */
     public void setAccessCode(String accessCode) {
         this.accessCode = accessCode;
+    }
+
+    /**
+     * Get the token used to configure AMEX Express Checkout
+     *
+     * @return AMEX Express Checkout token
+     */
+    public String getAmexECEncryptedData() {
+        return amexECEncryptedData;
+    }
+
+    /**
+     * Set a token used to configure AMEX Express Checkout
+     *
+     * @param amexECEncryptedData AMEX Express Checkout token
+     */
+    public void setAmexECEncryptedData(String amexECEncryptedData) {
+        this.amexECEncryptedData = amexECEncryptedData;
     }
 }

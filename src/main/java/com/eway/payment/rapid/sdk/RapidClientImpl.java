@@ -30,6 +30,7 @@ import com.eway.payment.rapid.sdk.output.QueryTransactionResponse;
 import com.eway.payment.rapid.sdk.output.RefundResponse;
 import com.eway.payment.rapid.sdk.output.ResponseOutput;
 import com.eway.payment.rapid.sdk.util.Constant;
+import com.eway.payment.rapid.sdk.util.RapidClientFilter;
 import com.eway.payment.rapid.sdk.util.ResourceUtil;
 
 import com.sun.jersey.api.client.Client;
@@ -56,6 +57,7 @@ public class RapidClientImpl implements RapidClient {
     private String password;
     private String webUrl;
     private String rapidEndpoint;
+    private String apiVersion;
     private boolean debug;
 
     private boolean isValid;
@@ -99,6 +101,11 @@ public class RapidClientImpl implements RapidClient {
     public void setDebug(boolean debug) {
         LOGGER.info("eWAY Rapid SDK debug mode set to " + debug);
         this.debug = debug;
+    }
+
+    public void setVersion(String version) {
+        LOGGER.info("eWAY Rapid SDK version set to " + version);
+        this.apiVersion = version;
     }
 
     /**
@@ -375,21 +382,17 @@ public class RapidClientImpl implements RapidClient {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client client = Client.create(clientConfig);
         client.addFilter(new HTTPBasicAuthFilter(APIKey, password));
+
         if (this.debug) {
             client.addFilter(new LoggingFilter(System.out));
         }
+
+        // Set additional headers
+        RapidClientFilter rapidFilter = new RapidClientFilter();
+        rapidFilter.setVersion(apiVersion);
+        client.addFilter(rapidFilter);
+
         WebResource resource = client.resource(webUrl);
-        String userAgent = "";
-        try {
-            Properties prop = ResourceUtil.loadProperiesOnResourceFolder(Constant.RAPID_API_RESOURCE);
-            userAgent = prop.getProperty(Constant.RAPID_SDK_USER_AGENT_PARAM);
-            if (StringUtils.isBlank(userAgent)) {
-                throw new Exception("Resource file " + Constant.RAPID_API_RESOURCE + " is invalid.");
-            }
-        } catch (Exception e) {
-            LOGGER.error("User Agent could not be loaded", e);
-        }
-        resource.header("UserAgent", userAgent);
         return resource;
     }
 

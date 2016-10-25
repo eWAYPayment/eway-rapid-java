@@ -16,6 +16,7 @@ public class CardDetails {
     private String startYear;
     private String issueNumber;
     private String CVN;
+    private int cardType;
 
     /**
      * Return name on the card
@@ -180,5 +181,25 @@ public class CardDetails {
     @JsonProperty("CVN")
     public void setCVN(String CVN) {
         this.CVN = CVN;
+    }
+
+    /**
+     * Get the card type (Rapid v40+ only)
+     *
+     * @return Card Type
+     */
+    public int getCardType() {
+        return cardType;
+    }
+
+    /**
+     * Set the card type (Rapid v40+ only)
+     *
+     * @param cardType Card Type
+     */
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonProperty("CardType")
+    public void setCardType(int cardType) {
+        this.cardType = cardType;
     }
 }

@@ -25,6 +25,9 @@ public class IntegrationTest {
 
     public RapidClient getSandboxClient() {
         client = RapidSDK.newRapidClient(APIKEY, PASSWORD, SANDBOX_ENDPOINT);
+        if (System.getenv("APIVERSION") != null) {
+            client.setVersion(System.getenv("APIVERSION"));
+        }
         return client;
     }
 

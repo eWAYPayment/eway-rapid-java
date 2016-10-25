@@ -58,6 +58,16 @@ public class Transaction {
 
     private boolean saveCustomer = false;
 
+    private String transactionDateTime;
+
+    private String currencyCode;
+
+    private int source;
+
+    private String maxRefund;
+
+    private String originalTransactionId;
+
     /**
      * Return type of transaction (Purchase, MOTO,etc)
      *
@@ -265,7 +275,7 @@ public class Transaction {
     }
 
     /**
-     * Return the Secured Card Data - Card data ID, used for Secure Fields, 
+     * Return the Secured Card Data - Card data ID, used for Secure Fields,
      * Visa Checkout, AMEX Express Checkout and Android Pay (optional)
      *
      * @return the Secured Card Data
@@ -546,6 +556,106 @@ public class Transaction {
      */
     public void setSaveCustomer(boolean saveCustomer) {
         this.saveCustomer = saveCustomer;
+    }
+
+    /**
+     * Get the date and time the transaction took place
+     * Rapid v40+ only
+     *
+     * @return the date and time of the transaction
+     */
+    public String getTransactionDateTime() {
+        return transactionDateTime;
+    }
+
+    /**
+     * Set the date and time the transaction took place
+     * Rapid v40+ only
+     *
+     * @param transactionDateTime the date and time of the transaction
+     */
+    public void setTransactionDateTime(String transactionDateTime) {
+        this.transactionDateTime = transactionDateTime;
+    }
+
+    /**
+     * Get the ISO 4217 numeric currency code (e.g. AUD = 036)
+     * Rapid v40+ only
+     *
+     * @return The currency code
+     */
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    /**
+     * Set the ISO 4217 numeric currency code (e.g. AUD = 036)
+     * Rapid v40+ only
+     *
+     * @param currencyCode The currency code
+     */
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    /**
+     * Reserved for future use
+     * Rapid v40+ only
+     *
+     * @return n/a
+     */
+    public int getSource() {
+        return source;
+    }
+
+    /**
+     * Reserved for future use
+     * Rapid v40+ only
+     *
+     * @param source n/a
+     */
+    public void setSource(int source) {
+        this.source = source;
+    }
+
+    /**
+     * Get the maximum amount that could be refunded from this transaction
+     * Rapid v40+ only
+     *
+     * @return the maximum refund amount
+     */
+    public String getMaxRefund() {
+        return maxRefund;
+    }
+
+    /**
+     * Get the maximum amount that could be refunded from this transaction
+     * Rapid v40+ only
+     *
+     * @param maxRefund the maximum refund amount
+     */
+    public void setMaxRefund(String maxRefund) {
+        this.maxRefund = maxRefund;
+    }
+
+    /**
+     * Gets the original transaction ID if the queried transaction is a refund
+     * Rapid v40+ only
+     *
+     * @return the original transaction ID
+     */
+    public String getOriginalTransactionId() {
+        return originalTransactionId;
+    }
+
+    /**
+     * Sets the original transaction ID
+     * Rapid v40+ only
+     *
+     * @param originalTransactionId the original transaction ID
+     */
+    public void setOriginalTransactionId(String originalTransactionId) {
+        this.originalTransactionId = originalTransactionId;
     }
 
 }

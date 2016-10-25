@@ -45,6 +45,13 @@ public interface RapidClient {
     void setDebug(boolean debug);
 
     /**
+     * Used to set the Rapid API version.
+     *
+     * @param version Rapid API version
+     */
+    void setVersion(String version);
+
+    /**
      * Create a transaction.
      * Can be an authorisation, a responsive shared page, transparent redirect,
      * or direct as the transaction method.

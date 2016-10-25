@@ -60,6 +60,28 @@ public class Transaction {
     @JsonProperty("errors")
     private String errors;
 
+    @JsonProperty("TransactionDateTime")
+    private String transactionDateTime;
+
+    @JsonProperty("FraudAction")
+    private String fraudAction;
+
+    @JsonProperty("TransactionCaptured")
+    private boolean transactionCaptured;
+
+    @JsonProperty("CurrencyCode")
+    private String currencyCode;
+
+    @JsonProperty("Source")
+    private int source;
+
+    @JsonProperty("MaxRefund")
+    private String maxRefund;
+
+    @JsonProperty("OriginalTransactionId")
+    private String originalTransactionId;
+
+
     public String getAuthorisationCode() {
         return authorisationCode;
     }
@@ -194,6 +216,62 @@ public class Transaction {
 
     public void setCustomerNote(String customerNote) {
         this.customerNote = customerNote;
+    }
+
+    public String getTransactionDateTime() {
+        return transactionDateTime;
+    }
+
+    public void setTransactionDateTime(String transactionDateTime) {
+        this.transactionDateTime = transactionDateTime;
+    }
+
+    public String getFraudAction() {
+        return fraudAction;
+    }
+
+    public void setFraudAction(String fraudAction) {
+        this.fraudAction = fraudAction;
+    }
+
+    public boolean getTransactionCaptured() {
+        return transactionCaptured;
+    }
+
+    public void setTransactionCaptured(boolean transactionCaptured) {
+        this.transactionCaptured = transactionCaptured;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public void setSource(int source) {
+        this.source = source;
+    }
+
+    public String getMaxRefund() {
+        return maxRefund;
+    }
+
+    public void setMaxRefund(String maxRefund) {
+        this.maxRefund = maxRefund;
+    }
+
+    public String getOriginalTransactionId() {
+        return originalTransactionId;
+    }
+
+    public void setOriginalTransactionId(String originalTransactionId) {
+        this.originalTransactionId = originalTransactionId;
     }
 
 }

@@ -8,6 +8,11 @@ jdk:
   - openjdk7
   - openjdk6
 
+env:
+  matrix:
+    - APIVERSION='31'
+    - APIVERSION='40'
+
 install: mvn install -DskipTests=true -Dgpg.skip=true
 
 script: mvn verify -Dgpg.skip=true -Dmaven.javadoc.skip=true
