@@ -15,9 +15,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.net.ssl.SSLContext;
 
 import javax.ws.rs.core.MediaType;
 
@@ -67,17 +72,26 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
      */
     protected final <U, K> U doPost(K request, Class<U> responseClass) throws RapidSdkException {
         try {
-            WebResource resouce = getWebResource();
+            WebResource resource = getWebResource();
             for (String path : getRequestPath()) {
                 if (!StringUtils.isBlank(path)) {
-                    resouce = resouce.path(path);
+                    resource = resource.path(path);
                 }
             }
 
             ObjectMapper mapper = new ObjectMapper();
             requestJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
 
-            return resouce.type(MediaType.APPLICATION_JSON_TYPE).accept(MediaType.APPLICATION_JSON_TYPE).post(responseClass, request);
+            SSLContext context = SSLContext.getInstance("TLSv1.2");
+            context.init(null,null,null);
+            SSLContext oldContext = SSLContext.getDefault();
+            SSLContext.setDefault(context);
+
+            U response = resource.type(MediaType.APPLICATION_JSON_TYPE).accept(MediaType.APPLICATION_JSON_TYPE).post(responseClass, request);
+
+            SSLContext.setDefault(oldContext);
+
+            return response;
         } catch (ClientHandlerException e) {
             throw new CommunicationFailureException("Internal system error communicating with Rapid API", e);
         } catch (UniformInterfaceException e) {
@@ -92,6 +106,10 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
             }
         } catch (IOException e) {
             throw new SystemErrorException(e.getMessage(), e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new CommunicationFailureException("Error using TLS 1.2 to connect to Rapid: no such algorithm", e);
+        } catch (KeyManagementException e) {
+            throw new CommunicationFailureException("Error using TLS 1.2 to connect to Rapid: key management", e);
         }
     }
 
@@ -107,17 +125,27 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
      */
     protected final <U, K> U doPut(K request, Class<U> responseClass) throws RapidSdkException {
         try {
-            WebResource resouce = getWebResource();
+            WebResource resource = getWebResource();
             for (String path : getRequestPath()) {
                 if (!StringUtils.isBlank(path)) {
-                    resouce = resouce.path(path);
+                    resource = resource.path(path);
                 }
             }
 
             ObjectMapper mapper = new ObjectMapper();
             requestJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
 
-            return resouce.type(MediaType.APPLICATION_JSON_TYPE).accept(MediaType.APPLICATION_JSON_TYPE).put(responseClass, request);
+            SSLContext context = SSLContext.getInstance("TLSv1.2");
+            context.init(null,null,null);
+            SSLContext oldContext = SSLContext.getDefault();
+            SSLContext.setDefault(context);
+
+            U response = resource.type(MediaType.APPLICATION_JSON_TYPE).accept(MediaType.APPLICATION_JSON_TYPE).put(responseClass, request);
+
+            SSLContext.setDefault(oldContext);
+
+            return response;
+
         } catch (ClientHandlerException e) {
             throw new CommunicationFailureException("Internal system error communicating with Rapid API", e);
         } catch (UniformInterfaceException e) {
@@ -132,6 +160,10 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
             }
         } catch (IOException e) {
             throw new SystemErrorException(e.getMessage(), e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new CommunicationFailureException("Error using TLS 1.2 to connect to Rapid: no such algorithm", e);
+        } catch (KeyManagementException e) {
+            throw new CommunicationFailureException("Error using TLS 1.2 to connect to Rapid: key management", e);
         }
     }
 
@@ -152,7 +184,17 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
             }
         }
         try {
-            return resouce.path(request).get(responseClass);
+
+            SSLContext context = SSLContext.getInstance("TLSv1.2");
+            context.init(null,null,null);
+            SSLContext oldContext = SSLContext.getDefault();
+            SSLContext.setDefault(context);
+
+            U response = resouce.path(request).get(responseClass);
+
+            SSLContext.setDefault(oldContext);
+
+            return response;
         } catch (ClientHandlerException e) {
             throw new CommunicationFailureException("Internal system error communicating with Rapid API", e);
         } catch (UniformInterfaceException e) {
@@ -166,6 +208,10 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
                 throw new SystemErrorException(e.getMessage(), e);
             }
 
+        } catch (NoSuchAlgorithmException e) {
+            throw new CommunicationFailureException("Error using TLS 1.2 to connect to Rapid: no such algorithm", e);
+        } catch (KeyManagementException e) {
+            throw new CommunicationFailureException("Error using TLS 1.2 to connect to Rapid: key management", e);
         }
     }
 

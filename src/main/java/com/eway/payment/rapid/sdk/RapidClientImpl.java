@@ -46,9 +46,12 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import javax.net.ssl.SSLContext;
 
 public class RapidClientImpl implements RapidClient {
 
@@ -129,6 +132,14 @@ public class RapidClientImpl implements RapidClient {
                 }
                 isValid = true;
                 LOGGER.info("Initiate client[" + rapidEndpoint + "] successful!");
+            } catch (NoSuchAlgorithmException e) {
+                LOGGER.error("Error using TLS 1.2 to connect to Rapid: no such algorithm", e);
+                isValid = false;
+                addErrorCode(Constant.COMMUNICATION_FAILURE_ERROR_CODE);
+            } catch (KeyManagementException e) {
+                LOGGER.error("Error using TLS 1.2 to connect to Rapid: key management", e);
+                isValid = false;
+                addErrorCode(Constant.COMMUNICATION_FAILURE_ERROR_CODE);
             } catch (Exception e) {
                 LOGGER.error("Error loading or connecting to endpoint", e);
                 isValid = false;
@@ -171,8 +182,16 @@ public class RapidClientImpl implements RapidClient {
      */
     private void verifyEndpointUrl(String endpointUrl) throws Exception {
         URL url = new URL(endpointUrl);
+
+        SSLContext context = SSLContext.getInstance("TLSv1.2");
+        context.init(null,null,null);
+        SSLContext oldContext = SSLContext.getDefault();
+        SSLContext.setDefault(context);
+
         URLConnection conn = url.openConnection();
         conn.connect();
+
+        SSLContext.setDefault(oldContext);
     }
 
     public CreateTransactionResponse create(PaymentMethod paymentMethod, Transaction transaction) {
