@@ -3,8 +3,8 @@ package com.eway.payment.rapid.sdk.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.eway.payment.rapid.sdk.beans.internal.Customer;
 

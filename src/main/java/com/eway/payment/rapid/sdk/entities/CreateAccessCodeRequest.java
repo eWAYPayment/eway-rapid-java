@@ -5,20 +5,21 @@ import com.eway.payment.rapid.sdk.beans.internal.Customer;
 import com.eway.payment.rapid.sdk.beans.internal.Option;
 import com.eway.payment.rapid.sdk.beans.internal.Payment;
 import com.eway.payment.rapid.sdk.beans.internal.ShippingAddress;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateAccessCodeRequest extends Request {
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("Customer")
     private Customer customer;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("ShippingAddress")
     private ShippingAddress shippingAddress;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("ShippingMethod")
     private String shippingMethod;
 
@@ -37,26 +38,26 @@ public class CreateAccessCodeRequest extends Request {
     @JsonProperty("Method")
     private String method;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CustomerIP")
     private String customerIP;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("DeviceID")
     private String deviceID;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CheckoutPayment")
     private Boolean checkoutPayment;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CheckoutUrl")
     private String checkoutUrl;
 
     @JsonProperty("TransactionType")
     private String transactionType;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("PartnerID")
     private String partnerID;
 

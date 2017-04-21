@@ -1,6 +1,6 @@
 package com.eway.payment.rapid.sdk.beans.external;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Contains line item information

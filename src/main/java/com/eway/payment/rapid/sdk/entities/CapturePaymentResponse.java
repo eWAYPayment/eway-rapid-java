@@ -1,30 +1,27 @@
 package com.eway.payment.rapid.sdk.entities;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Response object from capturing a payment
  */
-@SuppressWarnings("restriction")
-@XmlRootElement(name = "CapturePaymentResponse")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CapturePaymentResponse extends Response {
 
-    @XmlElement(name = "ResponseCode")
+    @JsonProperty("ResponseCode")
     private String responseCode;
     
-    @XmlElement(name = "ResponseMessage")
+    @JsonProperty("ResponseMessage")
     private String responseMessage;
     
-    @XmlElement(name = "TransactionID")
+    @JsonProperty("TransactionID")
     private String transactionID;
     
-    @XmlElement(name = "TransactionStatus")
+    @JsonProperty("TransactionStatus")
     private Boolean transactionStatus;
     
-    @XmlElement(name = "Errors")
+    @JsonProperty("Errors")
     private String errors;
 
     /**

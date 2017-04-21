@@ -1,8 +1,8 @@
 package com.eway.payment.rapid.sdk.beans.internal;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Transaction {
@@ -46,11 +46,11 @@ public class Transaction {
     @JsonProperty("Verification")
     private Verification verification;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("Customer")
     private Customer customer;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("ShippingAddress")
     private ShippingAddress shippingAddress;
 

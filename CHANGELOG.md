@@ -2,6 +2,11 @@
 
 All Notable changes will be documented in this file
 
+## 1.3.0
+
+ - Updated SDK to use TLS 1.2 when connecting to eWAY
+ - Updated Jackson (JSON library) to version 2
+
 ## 1.2.0
 
  - Added ability to set the Rapid API version and new associated fields

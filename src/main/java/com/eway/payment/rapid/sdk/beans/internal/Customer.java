@@ -2,9 +2,10 @@ package com.eway.payment.rapid.sdk.beans.internal;
 
 import com.eway.payment.rapid.sdk.beans.external.CardDetails;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
@@ -66,42 +67,42 @@ public class Customer {
     @JsonProperty("Url")
     private String url;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardNumber")
     private String cardNumber;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardStartMonth")
     private String cardStartMonth;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardStartYear")
     private String cardStartYear;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardIssueNumber")
     private String cardIssueNumber;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardName")
     private String cardName;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardExpiryMonth")
     private Integer cardExpiryMonth;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardExpiryYear")
     private Integer cardExpiryYear;
 
     @JsonProperty("IsActive")
     private String isActive;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardDetails")
     private CardDetails cardDetails;
 
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CustomerIP")
     private String customerDeviceIP;
 

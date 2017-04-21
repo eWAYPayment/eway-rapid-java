@@ -1,7 +1,7 @@
 package com.eway.payment.rapid.sdk.entities;
 
 import com.eway.payment.rapid.sdk.beans.internal.Payment;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CapturePaymentRequest extends Request {
 

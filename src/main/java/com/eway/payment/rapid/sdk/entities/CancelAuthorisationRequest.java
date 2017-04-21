@@ -1,6 +1,6 @@
 package com.eway.payment.rapid.sdk.entities;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CancelAuthorisationRequest extends Request {
 

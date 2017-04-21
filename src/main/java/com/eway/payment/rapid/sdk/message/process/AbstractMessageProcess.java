@@ -12,7 +12,8 @@ import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.MapperFeature;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -80,6 +81,7 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
             }
 
             ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
             requestJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
 
             SSLContext context = SSLContext.getInstance("TLSv1.2");
@@ -133,6 +135,7 @@ public abstract class AbstractMessageProcess<T, V> implements MessageProcess<T, 
             }
 
             ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
             requestJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
 
             SSLContext context = SSLContext.getInstance("TLSv1.2");

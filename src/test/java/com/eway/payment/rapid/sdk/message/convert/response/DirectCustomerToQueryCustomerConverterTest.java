@@ -1,7 +1,7 @@
 package com.eway.payment.rapid.sdk.message.convert.response;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

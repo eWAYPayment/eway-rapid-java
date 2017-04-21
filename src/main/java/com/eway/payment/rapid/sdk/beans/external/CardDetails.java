@@ -1,7 +1,8 @@
 package com.eway.payment.rapid.sdk.beans.external;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * Card Details
@@ -32,7 +33,7 @@ public class CardDetails {
      *
      * @param name Name on the card
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("Name")
     public void setName(String name) {
         this.name = name;
@@ -53,7 +54,7 @@ public class CardDetails {
      *
      * @param number Number on the credit card
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("Number")
     public void setNumber(String number) {
         this.number = number;
@@ -74,7 +75,7 @@ public class CardDetails {
      *
      * @param expiryMonth Card expiry month
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("ExpiryMonth")
     public void setExpiryMonth(String expiryMonth) {
 		if (expiryMonth != null && expiryMonth.length() == 1) {
@@ -97,7 +98,7 @@ public class CardDetails {
      *
      * @param expiryYear Card expiry year
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("ExpiryYear")
     public void setExpiryYear(String expiryYear) {
         this.expiryYear = expiryYear;
@@ -117,7 +118,7 @@ public class CardDetails {
      *
      * @param startMonth Card start month
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("StartMonth")
     public void setStartMonth(String startMonth) {
         this.startMonth = startMonth;
@@ -137,7 +138,7 @@ public class CardDetails {
      *
      * @param startYear Card start year
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("StartYear")
     public void setStartYear(String startYear) {
         this.startYear = startYear;
@@ -157,7 +158,7 @@ public class CardDetails {
      *
      * @param issueNumber Card issue number
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("IssueNumber")
     public void setIssueNumber(String issueNumber) {
         this.issueNumber = issueNumber;
@@ -177,7 +178,7 @@ public class CardDetails {
      *
      * @param CVN Card verification number
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CVN")
     public void setCVN(String CVN) {
         this.CVN = CVN;
@@ -197,7 +198,7 @@ public class CardDetails {
      *
      * @param cardType Card Type
      */
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonInclude(Include.NON_NULL)
     @JsonProperty("CardType")
     public void setCardType(int cardType) {
         this.cardType = cardType;
