@@ -58,6 +58,7 @@ public class InputModelFactory {
         option2.setValue("Option 2");
         listOption.add(option1);
         listOption.add(option2);
+        transaction.setOptions(listOption);
         List<LineItem> listItem = new ArrayList<LineItem>();
         LineItem item = new LineItem();
         item.setSku("12345678901234567890");
