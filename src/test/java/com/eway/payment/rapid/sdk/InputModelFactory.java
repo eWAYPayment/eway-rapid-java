@@ -51,8 +51,16 @@ public class InputModelFactory {
         transaction.setRedirectURL("http://www.eway.com.au");
         transaction.setDeviceID("546545");
         transaction.setTransactionType(TransactionType.Purchase);
-        List<String> listOption = new ArrayList<String>();
-        listOption.add("Option1");
+        List<Option> listOption = new ArrayList<Option>();
+        Option option1 = new Option();
+        option1.setValue("Option 1");
+        Option option2 = new Option();
+        option1.setValue("Option 2");
+        Option option3 = new Option();
+        option1.setValue("Option 3");
+        listOption.add(option1);
+        listOption.add(option2);
+        listOption.add(option3);
         transaction.setOptions(listOption);
         List<LineItem> listItem = new ArrayList<LineItem>();
         LineItem item = new LineItem();
