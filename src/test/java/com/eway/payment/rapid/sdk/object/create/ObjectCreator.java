@@ -162,7 +162,7 @@ public class ObjectCreator {
         return refundDetails;
     }
 
-    public static List<String> createOptions() {
+    public static List<Option> createOptions() {
         List<Option> options = new ArrayList<Option>();
         Option option1 = new Option();
         option1.setValue("Option1");
