@@ -9,6 +9,7 @@ import com.eway.payment.rapid.sdk.beans.external.ShippingDetails;
 import com.eway.payment.rapid.sdk.beans.external.ShippingMethod;
 import com.eway.payment.rapid.sdk.beans.external.Transaction;
 import com.eway.payment.rapid.sdk.exception.RapidSdkException;
+import java.util.Arrays;
 
 public class InternalTransToTransConverter implements BeanConverter<com.eway.payment.rapid.sdk.beans.internal.Transaction, Transaction> {
 
