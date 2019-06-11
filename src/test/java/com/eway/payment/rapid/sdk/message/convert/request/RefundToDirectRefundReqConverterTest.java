@@ -38,7 +38,7 @@ public class RefundToDirectRefundReqConverterTest {
         shippingDetails.setShippingAddress(address);
         List<LineItem> items = ObjectCreator.createLineItems();
         refund.setLineItems(items);
-        List<String> options = ObjectCreator.createOptions();
+        List<Option> options = ObjectCreator.createOptions();
         refund.setOptions(options);
         refund.setCustomer(customer);
         refund.setShippingDetails(shippingDetails);
