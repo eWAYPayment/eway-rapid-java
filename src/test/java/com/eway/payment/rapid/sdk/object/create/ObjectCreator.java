@@ -163,8 +163,14 @@ public class ObjectCreator {
     }
 
     public static List<String> createOptions() {
-        List<String> options = new ArrayList<String>();
-        options.add("Option 1");
+        List<Option> options = new ArrayList<Option>();
+        Option option1 = new Option();
+        option1.setValue("Option1");
+        Option option2 = new Option();
+        option2.setValue("Option2");
+
+        options.add(option1);
+        options.add(option2);
         return options;
     }
 }
