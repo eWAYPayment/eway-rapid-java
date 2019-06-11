@@ -13,7 +13,7 @@ public class TransactionToArrOptionConverter implements BeanConverter<Transactio
             List<Option> listOption = new ArrayList<Option>();
             for (Option op : u.getOptions()) {
                 Option option = new Option();
-                option.setValue(op.getValue);
+                option.setValue(op.getValue());
                 listOption.add(option);
             }
             return listOption.toArray(new Option[listOption.size()]);
