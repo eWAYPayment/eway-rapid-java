@@ -1,6 +1,7 @@
 package com.eway.payment.rapid.sdk.message.convert;
 
 import org.apache.commons.lang3.StringUtils;
+import com.eway.payment.rapid.sdk.beans.internal.Option;
 
 import com.eway.payment.rapid.sdk.beans.external.Customer;
 import com.eway.payment.rapid.sdk.beans.external.PaymentDetails;
