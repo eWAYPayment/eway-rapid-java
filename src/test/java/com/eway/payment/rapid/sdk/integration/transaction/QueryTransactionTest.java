@@ -51,6 +51,7 @@ public class QueryTransactionTest extends IntegrationTest {
         QueryTransactionResponse query = client.queryTransaction(transactionId);
         Assert.assertEquals(transactionId, query.getTransactionStatus()
                 .getTransactionID());
+        Assert.assertFalse(query.getTransaction().getOptions().isEmpty());
         Assert.assertTrue(query.getErrors() == null || query.getErrors().isEmpty());
 
     }
