@@ -1,5 +1,8 @@
 package com.eway.payment.rapid.sdk.beans.external;
 
+import com.eway.payment.rapid.sdk.beans.internal.Option;
+
+
 import java.util.List;
 
 /**
