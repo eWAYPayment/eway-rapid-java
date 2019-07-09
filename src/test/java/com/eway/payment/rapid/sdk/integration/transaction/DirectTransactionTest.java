@@ -59,7 +59,7 @@ public class DirectTransactionTest extends IntegrationTest {
     }
 
     @Test
-    public void testBlankInput() {
+    public void testBlankInput() {  
         Transaction tran = new Transaction();
         Customer c = new Customer();
         CardDetails cd = new CardDetails();
