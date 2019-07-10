@@ -20,9 +20,8 @@ public class InternalTransToTransConverter implements BeanConverter<com.eway.pay
         transaction.setTransactionDateTime(iTransaction.getTransactionDateTime());
         transaction.setSource(iTransaction.getSource());
         transaction.setOriginalTransactionId(iTransaction.getOriginalTransactionId());
-        Option[] listOptions = iTransaction.getOptions();
-        transaction.setOptions(Arrays.asList(listOptions));
-
+        transaction.setOptions(Arrays.asList(iTransaction.getOptions()));
+        
         Customer eWayCustomer = getEwayCustomer(iTransaction);
 
         if (eWayCustomer.getTokenCustomerID() == null && iTransaction.getTokenCustomerID() != null) {
