@@ -1,24 +1,18 @@
 package com.eway.payment.rapid.sdk.message.convert.request;
 
-import java.util.List;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import com.eway.payment.rapid.sdk.beans.external.Address;
-import com.eway.payment.rapid.sdk.beans.external.CardDetails;
-import com.eway.payment.rapid.sdk.beans.external.Customer;
-import com.eway.payment.rapid.sdk.beans.external.LineItem;
-import com.eway.payment.rapid.sdk.beans.external.Refund;
-import com.eway.payment.rapid.sdk.beans.external.ShippingDetails;
+import com.eway.payment.rapid.sdk.beans.external.*;
 import com.eway.payment.rapid.sdk.beans.internal.Option;
 import com.eway.payment.rapid.sdk.beans.internal.RefundDetails;
 import com.eway.payment.rapid.sdk.entities.DirectRefundRequest;
 import com.eway.payment.rapid.sdk.exception.RapidSdkException;
 import com.eway.payment.rapid.sdk.message.convert.BeanConverter;
 import com.eway.payment.rapid.sdk.object.create.ObjectCreator;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.List;
 
 public class RefundToDirectRefundReqConverterTest {
 
@@ -54,7 +48,7 @@ public class RefundToDirectRefundReqConverterTest {
         Assert.assertEquals("John", request.getCustomer().getFirstName());
         Assert.assertEquals("Sydney", request.getShippingAddress().getCity());
         Assert.assertEquals(1, request.getItems().length);
-        Assert.assertEquals(1, request.getOptions().length);
+        Assert.assertEquals(2, request.getOptions().length);
     }
 
     @After
