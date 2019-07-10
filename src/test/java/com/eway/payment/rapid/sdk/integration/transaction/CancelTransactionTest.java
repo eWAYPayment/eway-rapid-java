@@ -1,23 +1,16 @@
 package com.eway.payment.rapid.sdk.integration.transaction;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.eway.payment.rapid.sdk.InputModelFactory;
 import com.eway.payment.rapid.sdk.RapidClient;
-import com.eway.payment.rapid.sdk.beans.external.Address;
-import com.eway.payment.rapid.sdk.beans.external.CardDetails;
-import com.eway.payment.rapid.sdk.beans.external.Customer;
-import com.eway.payment.rapid.sdk.beans.external.PaymentDetails;
-import com.eway.payment.rapid.sdk.beans.external.PaymentMethod;
-import com.eway.payment.rapid.sdk.beans.external.Refund;
-import com.eway.payment.rapid.sdk.beans.external.Transaction;
+import com.eway.payment.rapid.sdk.beans.external.*;
 import com.eway.payment.rapid.sdk.beans.internal.RefundDetails;
 import com.eway.payment.rapid.sdk.integration.IntegrationTest;
 import com.eway.payment.rapid.sdk.output.CreateTransactionResponse;
 import com.eway.payment.rapid.sdk.output.RefundResponse;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class CancelTransactionTest extends IntegrationTest {
 
@@ -44,6 +37,7 @@ public class CancelTransactionTest extends IntegrationTest {
 
     @Test
     public void testValidInput() {
+        t.setCapture(false);
         CreateTransactionResponse res = client.create(PaymentMethod.Direct, t);
         RefundDetails rd = new RefundDetails();
         rd.setOriginalTransactionID(String.valueOf(res.getTransactionStatus().getTransactionID()));
@@ -55,7 +49,7 @@ public class CancelTransactionTest extends IntegrationTest {
     @Test
     public void testInvalidInput1() {
         RefundDetails rd = new RefundDetails();
-        rd.setOriginalTransactionID("1234");
+        rd.setOriginalTransactionID("20400723");
         refund.setRefundDetails(rd);
         RefundResponse cancelRes = client.cancel(refund);
         Assert.assertTrue(cancelRes.getErrors().contains("V6134"));
