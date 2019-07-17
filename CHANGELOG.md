@@ -2,6 +2,11 @@
 
 All Notable changes will be documented in this file
 
+## 1.4.0
+
+ - Added Option fields to TransactionQuery response
+ - Updated dependencies
+
 ## 1.3.0
 
  - Updated SDK to use TLS 1.2 when connecting to eWAY
