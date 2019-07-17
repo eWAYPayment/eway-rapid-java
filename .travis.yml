@@ -1,11 +1,13 @@
 language: java
 
+dist: xenial
+
 sudo: false
 
 jdk:
-  - oraclejdk8
-  - oraclejdk7
-  - openjdk7
+  - openjdk11
+  - openjdk9
+  - openjdk8
 
 env:
   matrix:
