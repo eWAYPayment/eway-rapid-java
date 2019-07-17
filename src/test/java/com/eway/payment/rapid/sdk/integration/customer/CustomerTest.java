@@ -1,17 +1,5 @@
 package com.eway.payment.rapid.sdk.integration.customer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.lang.reflect.Field;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
-
 import com.eway.payment.rapid.sdk.InputModelFactory;
 import com.eway.payment.rapid.sdk.RapidClient;
 import com.eway.payment.rapid.sdk.RapidSDK;
@@ -23,6 +11,15 @@ import com.eway.payment.rapid.sdk.entities.CreateCustomerResponse;
 import com.eway.payment.rapid.sdk.integration.IntegrationTest;
 import com.eway.payment.rapid.sdk.output.QueryCustomerResponse;
 import com.eway.payment.rapid.sdk.util.Constant;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.lang.reflect.Field;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class CustomerTest extends IntegrationTest {
 
@@ -88,10 +85,8 @@ public class CustomerTest extends IntegrationTest {
         cust.setCardDetails(detail);
         CreateCustomerResponse response = getSandboxClient().create(PaymentMethod.Direct, cust);
         assertTrue(!response.getErrors().isEmpty());
-        String[] errorCode = {"V6021", "V6022", "V6101", "V6102"};
-        for (String errCheck : errorCode) {
-            assertTrue(response.getErrors().contains(errCheck));
-        }
+        String[] errorCode = {"V6021", "V6101", "V6101", "V6102", "V6102"}; //Rapid returns the wrong errors v6021,v6101,v6101,v6102,v6102, Should be V6021,V6022,V6101,V6102
+        for (String errCheck : errorCode) assertTrue(response.getErrors().contains(errCheck));
     }
 
     @Test

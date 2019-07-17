@@ -1,5 +1,8 @@
 package com.eway.payment.rapid.sdk.beans.external;
 
+import com.eway.payment.rapid.sdk.beans.internal.Option;
+
+
 import java.util.List;
 
 /**
@@ -20,7 +23,7 @@ public class Transaction {
 
     private List<LineItem> lineItems;
 
-    private List<String> options;
+    private List<Option> options;
 
     private String tokenCustomerID;
 
@@ -186,7 +189,7 @@ public class Transaction {
      *
      * @return List of options
      */
-    public List<String> getOptions() {
+    public List<Option> getOptions() {
         return options;
     }
 
@@ -195,7 +198,7 @@ public class Transaction {
      *
      * @param options List of Options for the transaction
      */
-    public void setOptions(List<String> options) {
+    public void setOptions(List<Option> options) {
         this.options = options;
     }
 

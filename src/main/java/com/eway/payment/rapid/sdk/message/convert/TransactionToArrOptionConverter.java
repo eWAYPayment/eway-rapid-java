@@ -11,9 +11,9 @@ public class TransactionToArrOptionConverter implements BeanConverter<Transactio
     public Option[] doConvert(Transaction u) throws RapidSdkException {
         if (u.getOptions() != null) {
             List<Option> listOption = new ArrayList<Option>();
-            for (String op : u.getOptions()) {
+            for (Option op : u.getOptions()) {
                 Option option = new Option();
-                option.setValue(op);
+                option.setValue(op.getValue());
                 listOption.add(option);
             }
             return listOption.toArray(new Option[listOption.size()]);

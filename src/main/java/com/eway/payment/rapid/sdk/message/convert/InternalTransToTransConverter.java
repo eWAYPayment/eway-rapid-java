@@ -1,6 +1,7 @@
 package com.eway.payment.rapid.sdk.message.convert;
 
 import org.apache.commons.lang3.StringUtils;
+import com.eway.payment.rapid.sdk.beans.internal.Option;
 
 import com.eway.payment.rapid.sdk.beans.external.Customer;
 import com.eway.payment.rapid.sdk.beans.external.PaymentDetails;
@@ -8,6 +9,7 @@ import com.eway.payment.rapid.sdk.beans.external.ShippingDetails;
 import com.eway.payment.rapid.sdk.beans.external.ShippingMethod;
 import com.eway.payment.rapid.sdk.beans.external.Transaction;
 import com.eway.payment.rapid.sdk.exception.RapidSdkException;
+import java.util.Arrays;
 
 public class InternalTransToTransConverter implements BeanConverter<com.eway.payment.rapid.sdk.beans.internal.Transaction, Transaction> {
 
@@ -18,7 +20,8 @@ public class InternalTransToTransConverter implements BeanConverter<com.eway.pay
         transaction.setTransactionDateTime(iTransaction.getTransactionDateTime());
         transaction.setSource(iTransaction.getSource());
         transaction.setOriginalTransactionId(iTransaction.getOriginalTransactionId());
-
+        transaction.setOptions(Arrays.asList(iTransaction.getOptions()));
+        
         Customer eWayCustomer = getEwayCustomer(iTransaction);
 
         if (eWayCustomer.getTokenCustomerID() == null && iTransaction.getTokenCustomerID() != null) {

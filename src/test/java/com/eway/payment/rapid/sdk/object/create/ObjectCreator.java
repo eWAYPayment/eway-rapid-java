@@ -1,20 +1,12 @@
 package com.eway.payment.rapid.sdk.object.create;
 
+import com.eway.payment.rapid.sdk.beans.external.Customer;
+import com.eway.payment.rapid.sdk.beans.external.Transaction;
+import com.eway.payment.rapid.sdk.beans.external.*;
+import com.eway.payment.rapid.sdk.beans.internal.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.eway.payment.rapid.sdk.beans.external.Address;
-import com.eway.payment.rapid.sdk.beans.external.CardDetails;
-import com.eway.payment.rapid.sdk.beans.external.Customer;
-import com.eway.payment.rapid.sdk.beans.external.LineItem;
-import com.eway.payment.rapid.sdk.beans.external.PaymentDetails;
-import com.eway.payment.rapid.sdk.beans.external.ShippingDetails;
-import com.eway.payment.rapid.sdk.beans.external.ShippingMethod;
-import com.eway.payment.rapid.sdk.beans.external.Transaction;
-import com.eway.payment.rapid.sdk.beans.internal.Payment;
-import com.eway.payment.rapid.sdk.beans.internal.RefundDetails;
-import com.eway.payment.rapid.sdk.beans.internal.ShippingAddress;
-import com.eway.payment.rapid.sdk.beans.internal.Verification;
 
 public class ObjectCreator {
 
@@ -162,9 +154,15 @@ public class ObjectCreator {
         return refundDetails;
     }
 
-    public static List<String> createOptions() {
-        List<String> options = new ArrayList<String>();
-        options.add("Option 1");
+    public static List<Option> createOptions() {
+        List<Option> options = new ArrayList<Option>();
+        Option option1 = new Option();
+        option1.setValue("Option1");
+        Option option2 = new Option();
+        option2.setValue("Option2");
+
+        options.add(option1);
+        options.add(option2);
         return options;
     }
 }

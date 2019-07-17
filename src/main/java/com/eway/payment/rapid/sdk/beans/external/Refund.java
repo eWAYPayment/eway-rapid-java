@@ -1,5 +1,6 @@
 package com.eway.payment.rapid.sdk.beans.external;
 
+import com.eway.payment.rapid.sdk.beans.internal.Option;
 import com.eway.payment.rapid.sdk.beans.internal.RefundDetails;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Refund {
     private ShippingDetails shippingDetails;
     private RefundDetails refundDetails;
     private List<LineItem> lineItems;
-    private List<String> options;
+    private List<Option> options;
     private String deviceID;
     private String partnerID;
 
@@ -96,7 +97,7 @@ public class Refund {
      *
      * @return List of options
      */
-    public List<String> getOptions() {
+    public List<Option> getOptions() {
         return options;
     }
 
@@ -105,7 +106,7 @@ public class Refund {
      *
      * @param options List of options
      */
-    public void setOptions(List<String> options) {
+    public void setOptions(List<Option> options) {
         this.options = options;
     }
 

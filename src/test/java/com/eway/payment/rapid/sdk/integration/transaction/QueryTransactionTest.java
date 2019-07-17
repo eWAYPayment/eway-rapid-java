@@ -1,21 +1,15 @@
 package com.eway.payment.rapid.sdk.integration.transaction;
 
+import com.eway.payment.rapid.sdk.InputModelFactory;
+import com.eway.payment.rapid.sdk.RapidClient;
+import com.eway.payment.rapid.sdk.beans.external.*;
+import com.eway.payment.rapid.sdk.integration.IntegrationTest;
+import com.eway.payment.rapid.sdk.output.CreateTransactionResponse;
+import com.eway.payment.rapid.sdk.output.QueryTransactionResponse;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.eway.payment.rapid.sdk.InputModelFactory;
-import com.eway.payment.rapid.sdk.RapidClient;
-import com.eway.payment.rapid.sdk.beans.external.Address;
-import com.eway.payment.rapid.sdk.beans.external.CardDetails;
-import com.eway.payment.rapid.sdk.beans.external.Customer;
-import com.eway.payment.rapid.sdk.beans.external.PaymentDetails;
-import com.eway.payment.rapid.sdk.beans.external.PaymentMethod;
-import com.eway.payment.rapid.sdk.beans.external.Transaction;
-import com.eway.payment.rapid.sdk.integration.IntegrationTest;
-import com.eway.payment.rapid.sdk.output.CreateTransactionResponse;
-import com.eway.payment.rapid.sdk.output.QueryTransactionResponse;
 
 public class QueryTransactionTest extends IntegrationTest {
 
@@ -51,6 +45,7 @@ public class QueryTransactionTest extends IntegrationTest {
         QueryTransactionResponse query = client.queryTransaction(transactionId);
         Assert.assertEquals(transactionId, query.getTransactionStatus()
                 .getTransactionID());
+        Assert.assertTrue(!query.getTransaction().getOptions().isEmpty());
         Assert.assertTrue(query.getErrors() == null || query.getErrors().isEmpty());
 
     }
@@ -58,7 +53,7 @@ public class QueryTransactionTest extends IntegrationTest {
     @Test
     public void testBlankInput() {
         QueryTransactionResponse res = client.queryTransaction("");
-        Assert.assertNull(res.getTransaction());
+        Assert.assertTrue(res.getTransactionStatus().getTransactionID() == 0 || res.getTransaction() == null);
     }
 
     @Test

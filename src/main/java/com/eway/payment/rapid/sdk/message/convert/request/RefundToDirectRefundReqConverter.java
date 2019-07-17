@@ -36,12 +36,12 @@ public class RefundToDirectRefundReqConverter implements BeanConverter<Refund, D
                 LineItem[] items = lineItems.toArray(new LineItem[lineItems.size()]);
                 request.setItems(items);
             }
-            List<String> listOptions = refund.getOptions();
+            List<Option> listOptions = refund.getOptions();
             if (listOptions != null && !listOptions.isEmpty()) {
                 List<Option> listConvert = new ArrayList<Option>();
-                for (String value : listOptions) {
+                for (Option value : listOptions) {
                     Option op = new Option();
-                    op.setValue(value);
+                    op.setValue(value.getValue());
                     listConvert.add(op);
                 }
                 request.setOptions(listConvert.toArray(new Option[listConvert.size()]));

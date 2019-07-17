@@ -1,29 +1,13 @@
 package com.eway.payment.rapid.sdk;
 
+import com.eway.payment.rapid.sdk.beans.external.Customer;
+import com.eway.payment.rapid.sdk.beans.external.Transaction;
+import com.eway.payment.rapid.sdk.beans.external.*;
+import com.eway.payment.rapid.sdk.beans.internal.*;
+import com.eway.payment.rapid.sdk.entities.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.eway.payment.rapid.sdk.beans.external.Address;
-import com.eway.payment.rapid.sdk.beans.external.CardDetails;
-import com.eway.payment.rapid.sdk.beans.external.Customer;
-import com.eway.payment.rapid.sdk.beans.external.LineItem;
-import com.eway.payment.rapid.sdk.beans.external.PaymentDetails;
-import com.eway.payment.rapid.sdk.beans.external.ShippingDetails;
-import com.eway.payment.rapid.sdk.beans.external.ShippingMethod;
-import com.eway.payment.rapid.sdk.beans.external.Transaction;
-import com.eway.payment.rapid.sdk.beans.external.TransactionType;
-import com.eway.payment.rapid.sdk.beans.internal.BeagleVerification;
-import com.eway.payment.rapid.sdk.beans.internal.Option;
-import com.eway.payment.rapid.sdk.beans.internal.Payment;
-import com.eway.payment.rapid.sdk.beans.internal.RefundDetails;
-import com.eway.payment.rapid.sdk.beans.internal.ShippingAddress;
-import com.eway.payment.rapid.sdk.beans.internal.Verification;
-import com.eway.payment.rapid.sdk.entities.CreateAccessCodeResponse;
-import com.eway.payment.rapid.sdk.entities.CreateAccessCodeSharedResponse;
-import com.eway.payment.rapid.sdk.entities.DirectCustomerSearchResponse;
-import com.eway.payment.rapid.sdk.entities.DirectPaymentResponse;
-import com.eway.payment.rapid.sdk.entities.DirectRefundResponse;
-import com.eway.payment.rapid.sdk.entities.TransactionSearchResponse;
 
 public class InputModelFactory {
 
@@ -51,8 +35,13 @@ public class InputModelFactory {
         transaction.setRedirectURL("http://www.eway.com.au");
         transaction.setDeviceID("546545");
         transaction.setTransactionType(TransactionType.Purchase);
-        List<String> listOption = new ArrayList<String>();
-        listOption.add("Option1");
+        List<Option> listOption = new ArrayList<Option>();
+        Option option1 = new Option();
+        option1.setValue("Option 1");
+        Option option2 = new Option();
+        option2.setValue("Option 2");
+        listOption.add(option1);
+        listOption.add(option2);
         transaction.setOptions(listOption);
         List<LineItem> listItem = new ArrayList<LineItem>();
         LineItem item = new LineItem();
