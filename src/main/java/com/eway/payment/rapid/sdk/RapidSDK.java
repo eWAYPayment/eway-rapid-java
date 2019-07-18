@@ -62,6 +62,9 @@ public class RapidSDK {
      */
     private static String findErrorCode(String code) {
         Properties prop;
+        if (code == null) {
+            return null;
+        }
         try {
             prop = ResourceUtil.loadProperiesOnResourceFolder(Constant.ERROR_CODE_RESOURCE_EN);
             return prop.getProperty(code);

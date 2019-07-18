@@ -140,4 +140,12 @@ public class RapidJdkClientTest {
                 "Library does not have an API key or password initialised, or are invalid",
                 RapidSDK.userDisplayMessage(errCode, "en"));
     }
+
+    @Test
+    public void testNullErrorCode() {
+        String errCode = null;
+        assertEquals(
+                null,
+                RapidSDK.userDisplayMessage(errCode, "en"));
+    }
 }
