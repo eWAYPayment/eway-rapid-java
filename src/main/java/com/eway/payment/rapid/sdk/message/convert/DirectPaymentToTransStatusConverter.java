@@ -16,12 +16,14 @@ public class DirectPaymentToTransStatusConverter implements BeanConverter<Direct
         TransactionStatus status = new TransactionStatus();
         status.setBeagleScore(response.getBeagleScore() != null ? response.getBeagleScore() : 0.0);
         status.setCaptured(Boolean.parseBoolean(response.getTransactionCaptured()));
-        if (response.getFraudAction() == "0" || response.getFraudAction() == null) {
-            status.setFraudAction(FraudAction.valueOf(FraudAction.NotChallenged.name()));
-        } 
-        else {
-            status.setFraudAction(FraudAction.valueOf(response.getFraudAction()));
-        }
+        
+        if (response.getFraudAction() == null || response.getFraudAction().equalsIgnoreCase("0") || response.getFraudAction() == "")
+            {
+                status.setFraudAction(FraudAction.valueOf(FraudAction.NotChallenged.name()));
+            }
+            else {
+                status.setFraudAction(FraudAction.valueOf(response.getFraudAction()));
+            }
 
         status.setProcessingDetails(getProcessingDetails(response));
 

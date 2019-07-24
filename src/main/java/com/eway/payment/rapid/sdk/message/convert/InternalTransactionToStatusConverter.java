@@ -25,13 +25,20 @@ public class InternalTransactionToStatusConverter implements BeanConverter<Trans
         transactionStatus.setCaptured(transaction.getTransactionCaptured());
 
         transactionStatus.setProcessingDetails(getProcessingDetails(transaction));
-        if (!StringUtils.isBlank(transaction.getFraudAction())) {
-            try {
-                transactionStatus.setFraudAction(FraudAction.valueOf(transaction.getFraudAction()));
+        
+       try {
+                if (transaction.getFraudAction() == null || transaction.getFraudAction().equalsIgnoreCase("0")|| transaction.getFraudAction() == "")
+                {
+                    transactionStatus.setFraudAction(FraudAction.valueOf(FraudAction.NotChallenged.name()));
+                }
+                else{
+
+                    transactionStatus.setFraudAction(FraudAction.valueOf(transaction.getFraudAction()));
+                }
+
             } catch (Exception e) {
                 throw new ParameterInvalidException("Invalid Transaction Fraud Action: " + transaction.getFraudAction());
-            }
-        }
+         }
 
         if (!StringUtils.isBlank(transaction.getTransactionID())) {
             try {
