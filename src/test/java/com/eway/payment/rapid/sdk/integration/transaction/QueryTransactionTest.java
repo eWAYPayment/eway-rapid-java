@@ -47,6 +47,7 @@ public class QueryTransactionTest extends IntegrationTest {
                 .getTransactionID());
         Assert.assertTrue(!query.getTransaction().getOptions().isEmpty());
         Assert.assertTrue(query.getErrors() == null || query.getErrors().isEmpty());
+        Assert.assertEquals(res.getTransactionStatus().getFraudAction().name(), FraudAction.NotChallenged.name());
 
     }
 
@@ -54,6 +55,7 @@ public class QueryTransactionTest extends IntegrationTest {
     public void testBlankInput() {
         QueryTransactionResponse res = client.queryTransaction("");
         Assert.assertTrue(res.getTransactionStatus().getTransactionID() == 0 || res.getTransaction() == null);
+        Assert.assertEquals(res.getTransactionStatus().getFraudAction().name(), FraudAction.NotChallenged.name());
     }
 
     @Test
