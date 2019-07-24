@@ -27,7 +27,7 @@ public class InternalTransactionToStatusConverter implements BeanConverter<Trans
         transactionStatus.setProcessingDetails(getProcessingDetails(transaction));
         
        try {
-                if (transaction.getFraudAction() == null || transaction.getFraudAction().equalsIgnoreCase("0"))
+                if (transaction.getFraudAction() == null || transaction.getFraudAction().equalsIgnoreCase("0")|| transaction.getFraudAction() == "")
                 {
                     transactionStatus.setFraudAction(FraudAction.valueOf(FraudAction.NotChallenged.name()));
                 }
