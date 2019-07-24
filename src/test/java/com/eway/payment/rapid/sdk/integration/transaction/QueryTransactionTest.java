@@ -47,7 +47,7 @@ public class QueryTransactionTest extends IntegrationTest {
                 .getTransactionID());
         Assert.assertTrue(!query.getTransaction().getOptions().isEmpty());
         Assert.assertTrue(query.getErrors() == null || query.getErrors().isEmpty());
-        Assert.assertEquals(res.getTransactionStatus().getFraudAction().name(), FraudAction.NotChallenged.name());
+        Assert.assertEquals(query.getTransactionStatus().getFraudAction().name(), FraudAction.NotChallenged.name());
 
     }
 
