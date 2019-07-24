@@ -56,6 +56,7 @@ public class DirectTransactionTest extends IntegrationTest {
 
         Assert.assertTrue(res.getTransactionStatus().isStatus());
         Assert.assertNotEquals(0, res.getTransactionStatus().getTransactionID());
+        Assert.assertEquals(res.getTransactionStatus().getFraudAction().name(), FraudAction.NotChallenged.name());
     }
 
     @Test
@@ -75,6 +76,7 @@ public class DirectTransactionTest extends IntegrationTest {
         Assert.assertTrue(res.getErrors().contains("V6101"));
         Assert.assertTrue(res.getErrors().contains("V6102"));
         Assert.assertTrue(res.getErrors().contains("V6023"));
+        Assert.assertEquals(res.getTransactionStatus().getFraudAction().name(), FraudAction.NotChallenged.name());
     }
 
     @Test
