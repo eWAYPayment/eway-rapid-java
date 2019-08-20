@@ -24,7 +24,6 @@ public class CapturePaymentToCreateTransactionConverter implements BeanConverter
         }
         status.setStatus(capture.getTransactionStatus());
         ProcessingDetails detail = new ProcessingDetails();
-        detail.setResponseCode(capture.getErrors());
         detail.setResponseCode(capture.getResponseCode());
         status.setProcessingDetails(detail);
         response.setTransactionStatus(status);
