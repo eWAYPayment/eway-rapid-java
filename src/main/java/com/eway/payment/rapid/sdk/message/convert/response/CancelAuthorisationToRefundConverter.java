@@ -25,7 +25,6 @@ public class CancelAuthorisationToRefundConverter implements BeanConverter<Cance
         TransactionStatus status = new TransactionStatus();
         status.setStatus(cancel.getTransactionStatus());
         ProcessingDetails detail = new ProcessingDetails();
-        detail.setResponseCode(cancel.getErrors());
         detail.setResponseCode(cancel.getResponseCode());
         status.setProcessingDetails(detail);
         status.setTransactionID(Integer.parseInt(cancel.getTransactionID()));

@@ -25,20 +25,16 @@ public class InternalTransactionToStatusConverter implements BeanConverter<Trans
         transactionStatus.setCaptured(transaction.getTransactionCaptured());
 
         transactionStatus.setProcessingDetails(getProcessingDetails(transaction));
-        
-       try {
-                if (transaction.getFraudAction() == null || transaction.getFraudAction().equalsIgnoreCase("0")|| transaction.getFraudAction() == "")
-                {
-                    transactionStatus.setFraudAction(FraudAction.valueOf(FraudAction.NotChallenged.name()));
-                }
-                else{
 
-                    transactionStatus.setFraudAction(FraudAction.valueOf(transaction.getFraudAction()));
-                }
-
-            } catch (Exception e) {
-                throw new ParameterInvalidException("Invalid Transaction Fraud Action: " + transaction.getFraudAction());
-         }
+        try {
+            if (transaction.getFraudAction() == null || transaction.getFraudAction().equalsIgnoreCase("0") || transaction.getFraudAction().isEmpty()) {
+                transactionStatus.setFraudAction(FraudAction.valueOf(FraudAction.NotChallenged.name()));
+            } else {
+                transactionStatus.setFraudAction(FraudAction.valueOf(transaction.getFraudAction()));
+            }
+        } catch (Exception e) {
+            throw new ParameterInvalidException("Invalid Transaction Fraud Action: " + transaction.getFraudAction());
+        }
 
         if (!StringUtils.isBlank(transaction.getTransactionID())) {
             try {
@@ -73,13 +69,13 @@ public class InternalTransactionToStatusConverter implements BeanConverter<Trans
 
     private BeagleVerifyStatus getBeagleVerification(String code) {
         if ("0".equalsIgnoreCase(code)) {
-                return BeagleVerifyStatus.NotVerified;
+            return BeagleVerifyStatus.NotVerified;
         } else if ("1".equalsIgnoreCase(code)) {
-                return BeagleVerifyStatus.Attempted;
+            return BeagleVerifyStatus.Attempted;
         } else if ("2".equalsIgnoreCase(code)) {
-                return BeagleVerifyStatus.Verified;
+            return BeagleVerifyStatus.Verified;
         } else if ("3".equalsIgnoreCase(code)) {
-                return BeagleVerifyStatus.Failed;
+            return BeagleVerifyStatus.Failed;
         }
         return null;
     }
