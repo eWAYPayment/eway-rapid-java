@@ -87,6 +87,25 @@ public class EwayRapid {
 }
 ```
 
+## Sandbox Certificate 
+
+When using the above example to connect to the sandbox, you might get eway error S9990 _Rapid endpoint not set or invalid_.  If you are confident the _apiKey_ and _password_ are correct, and if you change the connection to the Production URL and you no longer get the error, it probably means you need to install the sandbox certificate into your Java keystore. You can do that by doing the following:
+
+Download the certificate by connecting to api.sandbox.ewaypayments.com in your browser and download the certificate, or by using the following shell command (assuming you have _openssl_ installed)
+
+```
+$ openssl s_client -showcerts -connect api.sandbox.ewaypayments.com:443 </dev/null 2>/dev/null | openssl x509 -outform PEM > api.sandbox.ewaypayments.com.pem
+```
+
+With the certificate downloaded, you can install it into your local Java keystore using the following command:
+
+```
+$ keytool -importcert -v -noprompt -trustcacerts -alias sandboxewaypayments -file api.sandbox.ewaypayments.com.pem -keystore /path/to/cacerts -storepass changeit
+```
+
+Once the sandbox certificate is installed, you should be able to connect without error.
+
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
