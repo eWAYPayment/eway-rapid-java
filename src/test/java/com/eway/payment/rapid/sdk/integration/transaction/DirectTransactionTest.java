@@ -88,6 +88,31 @@ public class DirectTransactionTest extends IntegrationTest {
         Assert.assertTrue(res.getErrors().contains("V6101"));
     }
 
+    @Test
+    public void testParterIdInResponse() {
+        String someParterId = "someId";
+        t.setPartnerID(someParterId);
+        CreateTransactionResponse res = client.create(PaymentMethod.Direct, t);
+        Assert.assertTrue(res.getTransactionStatus().isStatus());
+        Assert.assertEquals(someParterId, res.getTransaction().getPartnerID());
+    }
+
+    @Test
+    public void testShippingDetailsInResponse() {
+        CreateTransactionResponse res = client.create(PaymentMethod.Direct, t);
+        Assert.assertTrue(res.getTransactionStatus().isStatus());
+        Assert.assertNotNull(res.getTransaction().getShippingDetails());
+        Assert.assertEquals(t.getShippingDetails(), res.getTransaction().getShippingDetails());
+    }
+
+    @Test
+    public void testLineItemsInResponse() {
+        CreateTransactionResponse res = client.create(PaymentMethod.Direct, t);
+        Assert.assertTrue(res.getTransactionStatus().isStatus());
+        Assert.assertNotNull(res.getTransaction().getLineItems());
+        Assert.assertEquals(t.getLineItems(), res.getTransaction().getLineItems());
+    }
+
     @After
     public void tearDown() {
 
